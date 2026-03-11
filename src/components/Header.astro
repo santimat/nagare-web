@@ -4,15 +4,15 @@ import BurgerIcon from "../icons/Burguer.astro";
 
 const navItems = [
   {
-    href: "#packages",
+    href: "/#packages",
     text: "Precios",
   },
   {
-    href: "https://mail.google.com/mail/?view=cm&fs=1&to=nagarestudiojs@gmail.com&su=Consulta&body=Hola!",
+    href: "/contact",
     text: "Contacto",
   },
   {
-    href: "#description",
+    href: "/#description",
     text: "Sobre nosotros",
   },
 ];
@@ -21,7 +21,9 @@ const navItems = [
 <header id="header" class="header">
   <div class="header__content">
     <div class="header__content-icon-container">
-      <HeaderIcon />
+      <a href="/">
+        <HeaderIcon />
+      </a>
     </div>
 
     <label for="menu" class="header__content-menu-button">

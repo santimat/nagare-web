@@ -9,43 +9,43 @@ import InstagramIcon from "@icons/Instagram.svg";
 
 const date = new Date();
 const currentYear = date.getFullYear();
+
+const links = [
+  { Icon: HouseIcon, text: "Inicio", href: "/" },
+  { Icon: ServicesIcon, text: "Servicios", href: "/#services" },
+  { Icon: PackagesIcon, text: "Paquetes", href: "/#packages" },
+  { Icon: FAQsIcon, text: "FAQs", href: "/#faqs" },
+  { Icon: EmailIcon, text: "Contacto", href: "/contact" },
+  {
+    Icon: InstagramIcon,
+    text: "Instragram",
+    href: "https://www.instagram.com/nagare.studio",
+  },
+];
 ---
 
 <footer>
   <div>
     <div><FooterIcon /></div>
-    <ul>
-      <li>
-        <a href="#header">
-          <span><HouseIcon /></span>Inicio
-        </a>
-      </li>
-      <li>
-        <a href="#services">
-          <span><ServicesIcon /></span>Servicios
-        </a>
-      </li>
-      <li>
-        <a href="#packages">
-          <span><PackagesIcon /></span>Paquetes
-        </a>
-      </li>
-      <li>
-        <a href="#faqs">
-          <span><FAQsIcon /></span>FAQs
-        </a>
-      </li>
-      <li>
-        <a href="mailto:nagarestudiojs@gmail.com" target="_blank">
-          <span><EmailIcon /></span>Contacto
-        </a>
-      </li>
-      <li>
-        <a href="https://www.instagram.com/nagare.studio" target="_blank">
-          <span><InstagramIcon /></span>Instagram
-        </a>
-      </li>
-    </ul>
+    <nav>
+      <ul>
+        {
+          links.map(({ Icon, text, href }) => (
+            <li>
+              <a
+                href={href}
+                target={href.startsWith("https") ? "_blank" : "_self"}
+              >
+                <span>
+                  <Icon />
+                </span>
+                {text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
   <p>Nagare studio {currentYear}. Todos los derechos reservados</p>
 </footer>
@@ -54,7 +54,6 @@ const currentYear = date.getFullYear();
   footer {
     background: rgba(208, 196, 172, 0.304);
     padding-top: 3rem;
-    margin-top: 15rem;
     text-align: center;
     color: var(--color-accent);
     font-weight: bold;
@@ -74,14 +73,18 @@ const currentYear = date.getFullYear();
     }
 
     p {
-      padding-block: 2rem;
+      padding-block: 1rem;
       color: var(--color-text);
     }
   }
   @media (width >= 768px) {
+    footer {
+      padding-top: 1rem;
+    }
     footer > div {
       display: flex;
       justify-content: space-around;
+      align-items: center;
     }
     footer ul {
       display: grid;

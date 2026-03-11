@@ -11,7 +11,8 @@
       "@/*": ["src/*"],
       "@icons/*": ["src/icons/*"],
       "@components/*": ["src/components/*"],
-      "@sections/*": ["src/sections/*"]
+      "@sections/*": ["src/sections/*"],
+      "@assets/*": ["src/assets/*"]
     },
     "allowJs": true,
     "noCheck": true

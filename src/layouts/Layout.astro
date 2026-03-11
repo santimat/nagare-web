@@ -1,3 +1,7 @@
+---
+const { title = "" } = Astro.props;
+---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -5,7 +9,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Nagare</title>
+    <title>Nagare {title}</title>
   </head>
   <body>
     <slot />
@@ -76,6 +80,7 @@
   button {
     border: none;
     background: transparent;
+    font-family: inherit;
   }
   img {
     display: block;

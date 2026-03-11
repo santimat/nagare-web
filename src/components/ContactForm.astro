@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets";
+import CharacterImage from "@assets/hero.png";
+---
+
+<main>
+  <div class="wrapper">
+    <h1>Formulario de contacto</h1>
+    <form>
+      <div class="input-field">
+        <label for="email">Coloque su email:</label>
+        <div class="input-container">
+          <input id="email" name="email" type="email" required />
+        </div>
+      </div>
+      <div class="input-field">
+        <label for="query">Coloque su consulta</label>
+        <div class="input-container">
+          <textarea name="query" id="query" rows="6" cols="30"></textarea>
+        </div>
+      </div>
+
+      <p><button type="submit">Enviar consulta</button></p>
+    </form>
+    <div class="icon-container">
+      <Image
+        src={CharacterImage}
+        alt={"Personaje nagare sobre tatami con una computadora"}
+      />
+    </div>
+  </div>
+</main>
+
+<style>
+  main {
+    height: 100%;
+    position: relative;
+  }
+  .wrapper {
+    color: var(--color-neutral);
+    background: var(--color-main);
+    box-shadow: 0px 2px 8px 4px #0003;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 4rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    h1 {
+      text-align: center;
+    }
+  }
+  form {
+    & > div {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      &:first-child {
+        margin-top: 0.5rem;
+      }
+    }
+    textarea {
+      resize: none;
+      overflow-y: auto;
+    }
+    label {
+      font-size: 1.4rem;
+      font-family: var(--font-text);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .input-container {
+      background: var(--color-lighter);
+      border-radius: 1rem;
+      opacity: 0.8;
+      transition: outline-offset 0.1s;
+      &:focus,
+      &:focus-within {
+        outline: 2px solid var(--color-neutral);
+        outline-offset: 1.5px;
+      }
+    }
+    input,
+    textarea {
+      width: 100%;
+      font-size: 1.2rem;
+      border-radius: 1rem;
+      padding: 0.3rem;
+      margin-left: 2px;
+      background: transparent;
+      border: none;
+      opacity: 1;
+      &:focus,
+      &:focus-within {
+        border: none;
+        outline: none;
+      }
+    }
+    p {
+      display: flex;
+      justify-content: end;
+    }
+    button {
+      background: var(--color-accent);
+      padding: 0.5rem 0.7rem;
+      color: inherit;
+      font-weight: bold;
+      border-radius: 1rem;
+      font-size: 1.4rem;
+      transition: scale 0.3s;
+      &:hover {
+        scale: 1.011;
+        cursor: pointer;
+      }
+    }
+  }
+  .icon-container {
+    position: absolute;
+    width: 25rem;
+    bottom: 0;
+    left: 0;
+  }
+</style>
