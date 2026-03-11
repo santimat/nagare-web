@@ -35,7 +35,7 @@ const navItems = [
         {
           navItems.map(({ href, text }) => (
             <li class="nav__ul-item">
-              <a {href}>{text}</a>
+              <a href={href}>{text}</a>
             </li>
           ))
         }
@@ -44,6 +44,13 @@ const navItems = [
   </div>
 </header>
 
+<script>
+  document.querySelectorAll(".nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      document.querySelector("#menu").checked = false;
+    });
+  });
+</script>
 <style>
   .header__content {
     display: flex;
@@ -51,22 +58,29 @@ const navItems = [
     align-items: center;
     padding: 0.8rem;
     overflow: hidden;
+    input[type="checkbox"] {
+      display: none;
+    }
   }
+
   .header__content-menu-button {
     user-select: none;
     transition:
       0.3s scale,
-      0.3s transform;
+      rotate 0.3s;
     position: relative;
     z-index: 2;
+
     &:active {
       scale: 1.1;
     }
-    &:has(input:checked) {
-      transform: rotate(-45deg);
+  }
+  .header__content:has(input:checked) {
+    .nav {
+      animation: dance 0.5s forwards;
     }
-    input {
-      visibility: hidden;
+    .header__content-menu-button {
+      rotate: -45deg;
     }
   }
 
@@ -80,18 +94,13 @@ const navItems = [
     transform: translateY(-1000px);
     min-height: 100dvh;
   }
-  .header__content-menu-button:has(input:checked) ~ .nav {
-    animation: dance 0.5s forwards;
-  }
-  .nav__ul {
-    display: grid;
-    gap: 2rem;
-  }
+
   .nav__ul-item {
     color: var(--color-main);
     font-weight: bold;
     font-size: 1.5rem;
     transition: 0.3s scale;
+    margin-bottom: 2rem;
     &:active {
       scale: 1.1;
     }
