@@ -21,6 +21,18 @@ const titleToShow = title ? `- ${title}` : "";
   </body>
 </html>
 
+<script>
+  // Fix bottom white space on ios26
+  function isIOS26Safari() {
+    let ua = navigator.userAgent;
+    let isIOS26 = /26\./.test(ua) && /iPhone|iPad|iPod/.test(ua);
+    let isSafari = /^((?!CriOS|FxiOS|EdgiOS|OPiOS).)*Safari\//.test(ua);
+    return isIOS26 && isSafari;
+  }
+
+  document.body.style = isIOS26Safari() ? "height: 110dvh" : "";
+</script>
+
 <style is:global>
   @font-face {
     font-family: "heading";
