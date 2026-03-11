@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Nagare</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: "heading";
+    src:
+      url("/fonts/EtherealDemo-Black.woff2") format("woff2"),
+      url("/fonts/EtherealDemo-Black.woff") format("woff"),
+      url("/fonts/EtherealDemo-Black.ttf") format("ttf");
+    font-weight: black;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "text";
+    src:
+      url("/fonts/SourceSerif4.woff2") format("woff2"),
+      url("/fonts/SourceSerif4.woff") format("woff"),
+      url("/fonts/SourceSerif4.ttf") format("ttf");
+    font-style: normal;
+    font-display: swap;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    scroll-behavior: smooth;
+
+    /* Variables */
+    --color-neutral: #f2e8d5;
+    --color-text: #77797c;
+    --color-darker: #1e3219;
+    --color-main: #528dd9;
+    --color-secondary: #65aeee;
+    --color-lighter: #acd1f2;
+    --color-accent: #aa463c;
+    --color-services-bg: #d0c4ac;
+
+    --font-heading: "heading";
+    --font-text: "text";
+
+    --border-radius: 2rem;
+  }
+
+  body {
+    background: var(--color-neutral);
+    font-family: var(--font-text);
+  }
+  h2 {
+    font-weight: bolder;
+  }
+  ul {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  button {
+    border: none;
+    background: transparent;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  section {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+  }
+  section,
+  header {
+    position: relative;
+  }
+
+  /* prevent that body can be scrolleable with the navbar deployed */
+  body:has(.header__content-menu-button input:checked) {
+    overflow: hidden;
+  }
+
+  .outlined-text {
+    -webkit-text-stroke: 8px var(--color-neutral);
+    /* for default the browser paint the fill first and later the stroke, it determines that the browser have to paint first the stroke and later the fill */
+    /* with this the filling is painted over the stroke making that it doesnt take space from the text */
+    paint-order: stroke fill;
+  }
+</style>

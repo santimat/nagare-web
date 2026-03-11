@@ -1,0 +1,87 @@
+---
+import Package from "@components/Package.astro";
+import CustomPackage from "@components/CustomPackage.astro";
+const packages = [
+  {
+    title: "takumi",
+    details: [
+      { title: "identidad visual", description: "..." },
+      { title: "diseño web", description: "..." },
+    ],
+    price: "710.000",
+    kanji: "たくみ",
+  },
+  {
+    title: "hajime",
+    details: [
+      { title: "identidad visual", description: "..." },
+      { title: "diseño web", description: "..." },
+    ],
+    price: "380.000",
+    kanji: "始め",
+  },
+  {
+    title: "naka",
+    details: [
+      { title: "identidad visual", description: "..." },
+      { title: "diseño web", description: "..." },
+    ],
+    price: "550.000",
+    kanji: "なか",
+  },
+];
+---
+
+<section id="packages" class="packages">
+  <div>
+    <h2>Que tu marca fluya!</h2>
+    <div class="package-list">
+      {
+        packages.map((p, i) => {
+          const { title, details, price, kanji } = p;
+          return (
+            <Package
+              title={title}
+              details={details}
+              price={price}
+              kanji={kanji}
+              icon={i === 0}
+            />
+          );
+        })
+      }
+    </div>
+    <CustomPackage />
+  </div>
+</section>
+
+<style>
+  .packages {
+    h2 {
+      font-size: clamp(40px, 5vw, 60px);
+      margin-bottom: 1.2rem;
+      color: var(--color-main);
+    }
+    .package-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (width >= 768px) {
+    .packages {
+      max-width: 80%;
+      .package-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        article {
+          flex: 1;
+        }
+      }
+    }
+  }
+</style>

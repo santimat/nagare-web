@@ -1,0 +1,84 @@
+---
+import Teapot from "../icons/Teapot.svg";
+import Teacup from "../icons/Teacup.svg";
+
+const items = [
+  "Acompañamos a marcas a construir su presencia digital desde la autenticidad y el diseño consciente.",
+  "Desde logotipos hasta interfaces, creamos diseños visuales que cuentan historias y dejan huella.",
+];
+---
+
+<section class="description">
+  <Teapot width="60" height="60" class="description__teacop-icon" />
+  <Teacup width="60" height="60" class="description__teacup-icon" />
+  <div>
+    <h2 class="description__h3">
+      Somos un estudio de diseño y desarrollo web inspirado en la cultura
+      japonesa. Creamos marcas que destacan y experiencias digitales que
+      conectan.
+    </h2>
+    <ul class="description__ul">
+      {items.map((li) => <li class="description__ul-item">{li}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .description {
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.322);
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    padding: 1.5rem;
+  }
+
+  .description__teacop-icon,
+  .description__teacup-icon {
+    position: absolute;
+  }
+  .description__teacop-icon {
+    top: -2rem;
+    left: 0;
+  }
+  .description__teacup-icon {
+    bottom: -1.2rem;
+    right: -0.5rem;
+  }
+  .description__h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.45rem;
+  }
+  .description__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .description__ul-item {
+    max-width: 30ch;
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  @media (width >= 768px) {
+    .description {
+      display: flex;
+      justify-content: center;
+    }
+    .description__ul {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .description__h3 {
+      font-size: 1.65rem;
+    }
+
+    .description__ul-item {
+      font-size: 1.4rem;
+      max-width: 35ch;
+    }
+    .description__ul-item:last-of-type {
+      text-align: right;
+    }
+  }
+</style>

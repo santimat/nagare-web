@@ -1,0 +1,121 @@
+---
+import ComputerIcon from "../icons/Computer.svg";
+import CompanyIcon from "../icons/Company.svg";
+import CreatorsIcon from "../icons/Creators.svg";
+import JapanWomenIcon from "../icons/Japanwomen.svg";
+import RamenIcon from "../icons/Ramen.svg";
+
+const targets = [
+  {
+    icon: ComputerIcon,
+    heading: "Comercios",
+    description:
+      "Diseñamos tiendas online intuitivas y optimizadas par mejorar la experiencia del usuario y aumentar tus ventas. ",
+  },
+  {
+    icon: CompanyIcon,
+    heading: "Pymes",
+    description:
+      "Desarrollamos soluciones digitales escalables que fortalecen tu presencia online y comunican el valor de tu marca.",
+  },
+  {
+    icon: CreatorsIcon,
+    heading: "Creadores",
+    description:
+      "Construimos plataformas personalizadas que potencian tu contenido y reflejan tu identidad de forma auténtica.",
+  },
+];
+---
+
+<section class="clients">
+  <JapanWomenIcon width={60} height={60} class="clients__japanwomen-icon" />
+  <RamenIcon width={60} height={60} class="clients__ramen-icon" />
+  <div>
+    <h2 class="clients__heading">Clientes diversos, ideas unicas</h2>
+    <ul class="clients__ul">
+      {
+        targets.map(({ icon: Icon, heading, description }) => {
+          return (
+            <li class="clients__ul-item">
+              <Icon width={95} height={95} />
+              <h3>{heading}</h3>
+              <p>{description}</p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .clients {
+    background: var(--color-main);
+    color: var(--color-neutral);
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  .clients__japanwomen-icon,
+  .clients__ramen-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+  }
+  .clients__japanwomen-icon {
+    top: -2rem;
+    left: 0;
+  }
+  .clients__ramen-icon {
+    bottom: -1.8rem;
+    right: 0;
+  }
+  .clients__heading {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+    text-wrap: pretty;
+  }
+  .clients__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-block: 1.5rem;
+  }
+  .clients__ul-item {
+    h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (width >= 768px) {
+    .clients {
+      display: flex;
+      justify-content: center;
+    }
+    .clients div {
+      width: 92%;
+    }
+    .clients__ul {
+      margin-block: 2rem;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .clients__ul-item {
+      h3 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1.4rem;
+        max-width: 40ch;
+      }
+    }
+    .clients__japanwomen-icon,
+    .clients__ramen-icon {
+      width: 82px;
+      height: 82px;
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import HeroImage from "../assets/hero.png";
+---
+
+<section class="hero">
+  <div class="hero__h1-container">
+    <h1>Tu estudio creativo en constante flujo</h1>
+  </div>
+  <div class="hero__image-container">
+    <Image src={HeroImage} alt="Personaje de la empresa" quality={100} />
+  </div>
+</section>
+
+<style>
+  .hero {
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    background: var(--color-lighter);
+    display: grid;
+    font-family: var(--font-heading);
+    color: var(--color-main);
+    overflow: hidden;
+  }
+  .hero__h1-container {
+    text-align: right;
+    font-size: clamp(20px, 3.1vw, 50px);
+    line-height: 0.8;
+  }
+  .hero__image-container {
+    position: relative;
+    right: 2rem;
+    top: 2rem;
+    width: clamp(250px, 85vw, 500px);
+  }
+
+  @media (width >= 768px) {
+    .hero {
+      min-height: 500px;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+    .hero__h1-container {
+      width: 30ch;
+    }
+    .hero__image-container {
+      position: absolute;
+      top: 3rem;
+      left: -3rem;
+    }
+  }
+</style>

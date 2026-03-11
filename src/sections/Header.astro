@@ -1,0 +1,131 @@
+---
+import HeaderIcon from "../icons/Header.astro";
+import BurgerIcon from "../icons/Burguer.astro";
+
+const navItems = [
+  {
+    href: "#",
+    text: "Precios",
+  },
+  {
+    href: "#",
+    text: "Contacto",
+  },
+  {
+    href: "#",
+    text: "Sobre nosotros",
+  },
+];
+---
+
+<header id="header" class="header">
+  <div class="header__content">
+    <div class="header__content-icon-container">
+      <HeaderIcon />
+    </div>
+
+    <label for="menu" class="header__content-menu-button">
+      <BurgerIcon />
+      <input type="checkbox" id="menu" />
+    </label>
+    <nav class="nav">
+      <ul class="nav__ul">
+        {
+          navItems.map(({ href, text }) => (
+            <li class="nav__ul-item">
+              <a {href}>{text}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    overflow: hidden;
+  }
+  .header__content-menu-button {
+    user-select: none;
+    transition:
+      0.3s scale,
+      0.3s transform;
+    position: relative;
+    z-index: 2;
+    &:active {
+      scale: 1.1;
+    }
+    &:has(input:checked) {
+      transform: rotate(-45deg);
+    }
+    input {
+      visibility: hidden;
+    }
+  }
+
+  .nav {
+    display: grid;
+    place-content: center;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    transform: translateY(-1000px);
+    min-height: 100dvh;
+  }
+  .header__content-menu-button:has(input:checked) ~ .nav {
+    animation: dance 0.5s forwards;
+  }
+  .nav__ul {
+    display: grid;
+    gap: 2rem;
+  }
+  .nav__ul-item {
+    color: var(--color-main);
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: 0.3s scale;
+    &:active {
+      scale: 1.1;
+    }
+  }
+
+  @media (width >= 768px) {
+    .header__content-menu-button {
+      display: none;
+    }
+    .nav {
+      transform: translate(0);
+      position: relative;
+      min-height: auto;
+    }
+    .nav__ul {
+      display: flex;
+    }
+    .nav__ul-item {
+      &:hover {
+        scale: 1.03;
+        text-shadow: 1px 1px #0005;
+      }
+    }
+  }
+
+  @keyframes dance {
+    0% {
+      border-radius: 20%;
+    }
+    50% {
+      border-radius: 0px 0px 70% 30% / 0px 0px 80% 40%;
+    }
+    100% {
+      background: var(--color-neutral);
+      transform: translateY(0px);
+      border-radius: 0px;
+    }
+  }
+</style>

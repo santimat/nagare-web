@@ -1,0 +1,91 @@
+---
+import FooterIcon from "@icons/Footer-icon.svg";
+import HouseIcon from "@icons/House.svg";
+import ServicesIcon from "@icons/Services.svg";
+import PackagesIcon from "@icons/Packages.svg";
+import FAQsIcon from "@icons/Faqs.svg";
+import EmailIcon from "@icons/Email.svg";
+import InstagramIcon from "@icons/Instagram.svg";
+
+const date = new Date();
+const currentYear = date.getFullYear();
+---
+
+<footer>
+  <div>
+    <div><FooterIcon /></div>
+    <ul>
+      <li>
+        <a href="#header">
+          <span><HouseIcon /></span>Inicio
+        </a>
+      </li>
+      <li>
+        <a href="#services">
+          <span><ServicesIcon /></span>Servicios
+        </a>
+      </li>
+      <li>
+        <a href="#packages">
+          <span><PackagesIcon /></span>Paquetes
+        </a>
+      </li>
+      <li>
+        <a href="#faqs">
+          <span><FAQsIcon /></span>FAQs
+        </a>
+      </li>
+      <li>
+        <a href="mailto:nagarestudiojs@gmail.com" target="_blank">
+          <span><EmailIcon /></span>Contacto
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/nagare.studio" target="_blank">
+          <span><InstagramIcon /></span>Instagram
+        </a>
+      </li>
+    </ul>
+  </div>
+  <p>Nagare studio {currentYear}. Todos los derechos reservados</p>
+</footer>
+
+<style>
+  footer {
+    background: rgba(208, 196, 172, 0.304);
+    padding-top: 3rem;
+    margin-top: 15rem;
+    text-align: center;
+    color: var(--color-accent);
+    font-weight: bold;
+    ul {
+      display: grid;
+      justify-content: center;
+      gap: 10px;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 1.2rem;
+      span {
+        display: flex;
+      }
+    }
+
+    p {
+      padding-block: 2rem;
+      color: var(--color-text);
+    }
+  }
+  @media (width >= 768px) {
+    footer > div {
+      display: flex;
+      justify-content: space-around;
+    }
+    footer ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
