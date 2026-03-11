@@ -30,8 +30,7 @@ const titleToShow = title ? `- ${title}` : "";
     return isIOS26 && isSafari;
   }
 
-  document.body.style = isIOS26Safari() ? "height 110dvh" : "";
-  document.body.innerHTML = isIOS26Safari();
+  document.body.style = isIOS26Safari() ? "min-height:110dvh;" : "";
 </script>
 
 <style is:global>
