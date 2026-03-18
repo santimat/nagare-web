@@ -12,7 +12,8 @@
       "@icons/*": ["src/icons/*"],
       "@components/*": ["src/components/*"],
       "@sections/*": ["src/sections/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"]
     },
     "allowJs": true,
     "noCheck": true

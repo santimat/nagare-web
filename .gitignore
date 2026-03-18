@@ -26,5 +26,6 @@ pnpm-debug.log*
 # folders
 .vscode
 
-#pnpm-lock
+#pnpm-lock and workspace
 pnpm-lock.yaml
+pnpm-workspace.yaml

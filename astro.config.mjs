@@ -1,4 +1,8 @@
-import { defineConfig } from 'astro/config';
-
+import { defineConfig } from "astro/config";
+import talwindcss from "@tailwindcss/vite";
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  vite: {
+    plugins: [talwindcss()],
+  },
+});

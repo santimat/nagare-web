@@ -3,51 +3,15 @@ import { Image } from "astro:assets";
 import HeroImage from "../assets/hero.png";
 ---
 
-<section class="hero">
-  <div class="hero__h1-container">
-    <h1>Tu estudio creativo en constante flujo</h1>
-  </div>
-  <div class="hero__image-container">
+<section
+  class="bg-lighter min-h-[clamp(440px, 3vw, 500px)] mx-auto mb-20 max-w-[95%] items-center overflow-hidden rounded-3xl p-6 md:flex md:flex-row-reverse md:justify-between"
+>
+  <h1
+    class="text-main font-heading text-right text-[clamp(40px,6vw,96px)] leading-none md:w-[15ch]"
+  >
+    Tu estudio creativo en constante flujo
+  </h1>
+  <div class="relative top-8 right-8">
     <Image src={HeroImage} alt="Personaje de la empresa" />
   </div>
 </section>
-
-<style>
-  .hero {
-    border-radius: var(--border-radius);
-    padding: 1rem;
-    background: var(--color-lighter);
-    display: grid;
-    font-family: var(--font-heading);
-    color: var(--color-main);
-    overflow: hidden;
-  }
-  .hero__h1-container {
-    text-align: right;
-    font-size: clamp(20px, 3.1vw, 50px);
-    line-height: 0.8;
-  }
-  .hero__image-container {
-    position: relative;
-    right: 2rem;
-    top: 2rem;
-    width: clamp(250px, 85vw, 500px);
-  }
-
-  @media (width >= 768px) {
-    .hero {
-      min-height: 500px;
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-    }
-    .hero__h1-container {
-      width: 30ch;
-    }
-    .hero__image-container {
-      position: absolute;
-      top: 3rem;
-      left: -3rem;
-    }
-  }
-</style>

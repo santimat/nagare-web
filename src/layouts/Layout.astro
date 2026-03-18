@@ -4,6 +4,8 @@ import { ClientRouter } from "astro:transitions";
 const { title = "" } = Astro.props;
 
 const titleToShow = title ? `- ${title}` : "";
+
+import "@styles/global.css";
 ---
 
 <!doctype html>
@@ -16,100 +18,12 @@ const titleToShow = title ? `- ${title}` : "";
     <title>Nagare {titleToShow}</title>
     <ClientRouter />
   </head>
-  <body>
+  <body class="bg-neutral font-text">
     <slot />
   </body>
 </html>
 
-<script>
-  // Fix bottom white space on ios26
-  function isIOS26Safari() {
-    let ua = navigator.userAgent;
-    let isIOS26 = /26\./.test(ua) && /iPhone|iPad|iPod/.test(ua);
-    let isSafari = /^((?!CriOS|FxiOS|EdgiOS|OPiOS).)*Safari\//.test(ua);
-    return isIOS26 && isSafari;
-  }
-
-  document.body.style = isIOS26Safari() ? "min-height:110dvh;" : "";
-</script>
-
 <style is:global>
-  @font-face {
-    font-family: "heading";
-    src:
-      url("/fonts/EtherealDemo-Black.woff2") format("woff2"),
-      url("/fonts/EtherealDemo-Black.woff") format("woff"),
-      url("/fonts/EtherealDemo-Black.ttf") format("ttf");
-    font-weight: black;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "text";
-    src:
-      url("/fonts/SourceSerif4.woff2") format("woff2"),
-      url("/fonts/SourceSerif4.woff") format("woff"),
-      url("/fonts/SourceSerif4.ttf") format("ttf");
-    font-style: normal;
-    font-display: swap;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  :root {
-    scroll-behavior: smooth;
-
-    /* Variables */
-    --color-neutral: #f2e8d5;
-    --color-text: #77797c;
-    --color-darker: #1e3219;
-    --color-main: #528dd9;
-    --color-secondary: #65aeee;
-    --color-lighter: #acd1f2;
-    --color-accent: #aa463c;
-    --color-services-bg: #d0c4ac;
-
-    --font-heading: "heading";
-    --font-text: "text";
-
-    --border-radius: 2rem;
-  }
-
-  body {
-    background: var(--color-neutral);
-    font-family: var(--font-text);
-  }
-  h2 {
-    font-weight: bolder;
-  }
-  ul {
-    list-style: none;
-  }
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-  button {
-    border: none;
-    background: transparent;
-    font-family: inherit;
-  }
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-
-  section {
-    width: 95%;
-    margin: 0 auto;
-    margin-bottom: 5rem;
-  }
   section,
   header {
     position: relative;
