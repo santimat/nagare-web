@@ -32,56 +32,21 @@ const packages = [
 ];
 ---
 
-<section id="packages" class="packages">
+<section id="packages" class="mx-auto mb-20 max-w-120 lg:max-w-[90%]">
   <div>
-    <h2>Que tu marca fluya!</h2>
-    <div class="package-list">
+    <h2 class="text-main mb-12 text-center text-4xl font-bold md:text-5xl">
+      Que tu <span class="block md:inline">marca fluya!</span>
+    </h2>
+    <div class="grid gap-15 md:auto-rows-fr lg:w-full lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
       {
         packages.map((p, i) => {
           const { title, details, price, kanji } = p;
           return (
-            <Package
-              title={title}
-              details={details}
-              price={price}
-              kanji={kanji}
-              icon={i === 0}
-            />
+            <Package title={title} details={details} price={price} kanji={kanji} icon={i === 0} />
           );
         })
       }
+      <CustomPackage />
     </div>
-    <CustomPackage />
   </div>
 </section>
-
-<style>
-  .packages {
-    h2 {
-      font-size: clamp(40px, 5vw, 60px);
-      margin-bottom: 1.2rem;
-      color: var(--color-main);
-    }
-    .package-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-  }
-
-  @media (width >= 768px) {
-    .packages {
-      max-width: 80%;
-      .package-list {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        article {
-          flex: 1;
-        }
-      }
-    }
-  }
-</style>

@@ -1,32 +1,10 @@
 ---
-import Tag from "@icons/Tag.svg";
-
-interface Detail {
-  title?: string;
-  description?: string;
-}
-
-interface Props {
-  title: string;
-  description?: string;
-  details?: Detail[];
-  price: string;
-  icon?: boolean;
-  kanji?: string;
-  custom?: boolean;
-}
-const {
-  title,
-  description,
-  details,
-  icon = false,
-  price,
-  kanji,
-  custom = false,
-} = Astro.props;
+import Tag from "@icons/Tag.astro";
+import Chevron from "@icons/Chevron.astro";
+const { title, description, details, icon = false, price, kanji, custom = false } = Astro.props;
 ---
 
-<article class="package">
+<article class="bg-lighter relative rounded-4xl px-10 py-6 font-bold shadow-lg">
   {
     custom && (
       <div class="custom-badge">
@@ -34,129 +12,56 @@ const {
       </div>
     )
   }
-  <div>
-    {icon && <Tag width={80} height={80} />}
-    <span class="outlined-text">{kanji}</span>
-  </div>
-  <h3>{title}</h3>
-  <ul>
+  {icon && <Tag width={80} height={80} class="absolute -top-8 left-0" />}
+  <span class="outlined-text text-accent text-outline absolute -top-4 -right-4 rotate-20 text-5xl"
+    >{kanji}</span
+  >
+  <h3 class="text-accent text-6xl capitalize md:text-7xl">{title}</h3>
+
+  <ul class="text-text package-details my-10 text-2xl capitalize md:text-3xl">
     {
       details?.map(({ title, description }) => (
-        <li>
-          <details>
-            <summary>{title}</summary>
-            <div>
-              <p>{description}</p>
-            </div>
-          </details>
+        <li class="mb-4 overflow-hidden hover:cursor-pointer">
+          <h4 class="flex items-center gap-2">
+            <Chevron width="32" class="transition-transform duration-200" />
+            {title}
+          </h4>
+          <div class="ml-2 max-h-0 transition-[max-height] duration-300 ease-in-out">
+            <p>{description}</p>
+          </div>
         </li>
       ))
     }
   </ul>
-  <span><small class="outlined-text">Precio Total</small>${price}</span>
-  <button>Adquirir</button>
+  <span
+    class="text-accent bg-neutral relative mx-auto block w-fit rounded-4xl px-5 py-3 text-4xl md:text-5xl"
+    ><small class="outlined-text absolute -top-4 -left-4 -rotate-12 text-xl md:text-2xl"
+      >Precio Total</small
+    >${price}</span
+  >
+  <button
+    class="bg-accent text-neutral mt-8 block rounded-2xl px-5 py-3 text-2xl transition-transform duration-200 hover:scale-105 hover:cursor-pointer md:text-3xl"
+    >Adquirir</button
+  >
 </article>
 
-<style>
-  .package {
-    background: var(--color-lighter);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    display: grid;
-    margin: 1rem;
-    min-height: 400px;
-    padding: 1.2rem 2rem;
-    position: relative;
+<script>
+  // accordion for package details
+  document.querySelectorAll(".package-details li").forEach((detail) => {
+    detail.addEventListener("click", (e) => {
+      // get element which has listener associated to it
+      const targetedDetail = e.currentTarget;
+      const detailDescription = targetedDetail.querySelector("div");
+      const detailChevron = targetedDetail.querySelector("h4 svg");
+      const isOpen = detailDescription.style.maxHeight !== "";
 
-    div {
-      svg,
-      span {
-        position: absolute;
-      }
-      svg {
-        top: -2rem;
-        left: 0;
+      detailChevron.classList.toggle("rotate-90");
+      if (!isOpen) {
+        detailDescription.style.maxHeight = `${detailDescription.scrollHeight}px`;
+        return;
       }
 
-      & > div {
-        background: var(--color-neutral);
-      }
-      span {
-        top: -1rem;
-        right: -1rem;
-        font-size: 50px;
-        font-weight: bolder;
-        color: var(--color-accent);
-        transform: rotate(25deg);
-      }
-    }
-
-    h3 {
-      color: var(--color-accent);
-      font-size: clamp(64px, 10vw, 68px);
-      margin-bottom: 1rem;
-      text-transform: capitalize;
-    }
-
-    /* tener en cuenta truquito con el details y el summary */
-    ul {
-      text-transform: capitalize;
-      margin-bottom: 2rem;
-      font-weight: bold;
-      font-size: clamp(1.4rem, 3vw, 1.6rem);
-      color: var(--color-text);
-
-      li {
-        user-select: none;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-      li:not(:last-child) {
-        margin-bottom: 1rem;
-      }
-    }
-
-    & > span {
-      background: var(--color-neutral);
-      border-radius: 2rem;
-      color: var(--color-accent);
-      display: block;
-      font-size: clamp(38px, 3vw, 46px);
-      font-weight: bold;
-      margin: 0 auto;
-      padding: 0.8rem 1.3rem;
-      position: relative;
-      small {
-        font-size: clamp(20px, 3vw, 24px);
-        position: absolute;
-        top: -1rem;
-        left: -1rem;
-        transform: rotate(-10deg);
-      }
-    }
-
-    button {
-      background: var(--color-accent);
-      border-radius: 1rem;
-      color: var(--color-neutral);
-      display: block;
-      font-size: clamp(22px, 3vw, 30px);
-      font-weight: bold;
-      margin: 0 auto;
-      margin-top: 2rem;
-      padding: 0.8rem 1.2rem;
-      transition: scale 0.3s;
-      &:hover {
-        scale: 1.05;
-        cursor: pointer;
-      }
-    }
-  }
-
-  @media (width >= 768px) {
-    .package {
-      max-width: 400px;
-    }
-  }
-</style>
+      detailDescription.style.maxHeight = null;
+    });
+  });
+</script>

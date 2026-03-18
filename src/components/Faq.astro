@@ -11,8 +11,7 @@ const items = [
       "El proceso de trabajo es el siguiente: Primero charlamos sobre tu proyecto, tus necesidades y objetivos. Luego te enviamos una propuesta con un presupuesto y un plan de trabajo. Si estás de acuerdo, comenzamos a trabajar en tu proyecto y te mantenemos informado durante todo el proceso.",
   },
   {
-    title:
-      "¿Puedo contratar solo la parte de diseño o solo la parte de desarrollo?",
+    title: "¿Puedo contratar solo la parte de diseño o solo la parte de desarrollo?",
     description:
       "Sí, ofrecemos servicios de diseño y desarrollo por separado. Puedes contratar solo la parte de diseño o solo la parte de desarrollo, según tus necesidades.",
   },
@@ -27,29 +26,28 @@ const items = [
       "Sí, puedes pedir cambios después de contratar un paquete. Sin embargo, ten en cuenta que algunos cambios pueden requerir un ajuste en el presupuesto y el tiempo de entrega.",
   },
   {
-    title:
-      "¿Que pasa si necesito ayuda una vez que el proyecto está terminado?",
+    title: "¿Que pasa si necesito ayuda una vez que el proyecto está terminado?",
     description:
       "Ofrecemos soporte post-entrega para asegurarnos de que estés satisfecho con el resultado final. Si necesitas ayuda después de que el proyecto esté terminado, no dudes en contactarnos y estaremos encantados de ayudarte.",
   },
 ];
 ---
 
-<section id={"faqs"} class="faq">
-  <h2>Preguntas Frecuentes</h2>
+<section id={"faqs"} class="text-text mx-auto py-20 font-bold lg:w-[90%]">
+  <h2 class="text-accent mb-8 text-4xl leading-none md:text-5xl">Preguntas Frecuentes</h2>
 
   <ul>
     {
       items.map((i) => (
-        <li>
-          <div class="content-wrapper">
+        <li class="border-t-text border-t p-4 first:border-none">
+          <div class="content-wrapper overflow-hidden">
             <h3>
               <button>
                 {i.title} <span>+</span>
               </button>
             </h3>
 
-            <div class="content">
+            <div class="max-h-0 transition-[max-height] duration-300">
               <p>{i.description}</p>
             </div>
           </div>
@@ -57,99 +55,54 @@ const items = [
       ))
     }
   </ul>
-
-  <style>
-    .faq {
-      color: var(--color-text);
-      padding-block: 5rem;
-      width: 100%;
-      h2 {
-        font-size: clamp(40px, 5vw, 48px);
-        color: var(--color-accent);
-        text-align: center;
-        line-height: 1;
-        margin-bottom: 2rem;
-        font-weight: 1000;
-      }
-      ul {
-        li {
-          padding: 1rem;
-          border-top: 1px solid var(--color-text);
-        }
-      }
-    }
-
-    .content-wrapper {
-      overflow: hidden;
-      h3 button {
-        font-family: var(--font-text);
-      }
-    }
-    .content {
-      max-height: 0;
-      transition:
-        max-height 0.3s ease-out,
-        opacity 0.35s ease-out;
-      opacity: 0;
-      display: flex;
-      p {
-        margin-top: 1rem;
-        width: 90%;
-        font-size: 1.3rem;
-      }
-    }
-    button {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: space-between;
-      color: inherit;
-      font-size: clamp(1.2rem, 5vw, 1.5rem);
-      text-align: left;
-      font-weight: bold;
-      &:hover {
-        cursor: pointer;
-      }
-
-      span {
-        font-weight: normal;
-        margin-left: 1rem;
-        display: inline-block;
-        font-size: 2rem;
-        transition: transform 0.3s ease-out;
-        &.open-btn {
-          transform: rotate(45deg);
-        }
-      }
-    }
-    .open {
-      opacity: 1;
-    }
-
-    @media (width>=768px) {
-      .faq {
-        width: 90%;
-      }
-    }
-  </style>
-
-  <script>
-    const faqItems = document.querySelectorAll(".content-wrapper h3");
-    faqItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        const btn = item.querySelector("button span");
-        console.log(btn);
-
-        btn?.classList.toggle("open-btn");
-        const contentContainer = item.parentElement?.querySelector(".content");
-        contentContainer?.classList.toggle("open");
-
-        if (!contentContainer?.classList.contains("open")) {
-          return (contentContainer.style.maxHeight = "0px");
-        }
-
-        contentContainer.style.maxHeight = contentContainer.scrollHeight + "px";
-      });
-    });
-  </script>
 </section>
+
+<script>
+  document.querySelectorAll("#faqs li").forEach((faq) => {
+    faq.addEventListener("click", (e) => {
+      const targetedFaq = e.currentTarget;
+      const btn = targetedFaq.querySelector("button");
+    });
+  });
+</script>
+
+<style>
+  .content {
+    display: flex;
+    p {
+      margin-top: 1rem;
+      width: 90%;
+      font-size: 1.3rem;
+    }
+  }
+  button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    color: inherit;
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+    text-align: left;
+    font-weight: bold;
+    &:hover {
+      cursor: pointer;
+    }
+
+    span {
+      font-weight: normal;
+      margin-left: 1rem;
+      display: inline-block;
+      font-size: 2rem;
+      transition: transform 0.3s ease-out;
+      &.open-btn {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  @media (width>=768px) {
+    .faq {
+      width: 90%;
+    }
+  }
+</style>
