@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import CharacterImage from "@assets/hero.png";
+import CharacterImage from "@assets/character.astro";
 ---
 
 <main>
@@ -23,10 +23,7 @@ import CharacterImage from "@assets/hero.png";
       <p><button type="submit">Enviar consulta</button></p>
     </form>
     <div class="icon-container">
-      <Image
-        src={CharacterImage}
-        alt={"Personaje nagare sobre tatami con una computadora"}
-      />
+      <CharacterImage />
     </div>
   </div>
 </main>
