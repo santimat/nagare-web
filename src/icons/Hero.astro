@@ -1,0 +1,7 @@
+---
+import Image from "astro/components/Image.astro";
+import HeroImg from "@assets/character.avif";
+const { ...props } = Astro.props;
+---
+
+<Image src={HeroImg} alt="Nagare character" {...props} />

@@ -1,17 +1,16 @@
 ---
-import { Image } from "astro:assets";
-import HeroImage from "../assets/hero.png";
+import HeroIcon from "@icons/Hero.astro";
 ---
 
 <section
   class="bg-lighter min-h-[clamp(440px, 3vw, 500px)] mx-auto mb-20 max-w-[95%] items-center overflow-hidden rounded-3xl p-6 md:flex md:flex-row-reverse md:justify-between"
 >
   <h1
-    class="text-main font-heading text-right text-[clamp(40px,6vw,96px)] leading-none md:w-[15ch]"
+    class="text-main font-heading text-right text-[clamp(40px,6vw,96px)] leading-none md:w-[50ch]"
   >
     Tu estudio creativo en constante flujo
   </h1>
   <div class="relative top-8 right-8">
-    <Image src={HeroImage} alt="Personaje de la empresa" />
+    <HeroIcon />
   </div>
 </section>

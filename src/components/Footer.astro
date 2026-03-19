@@ -1,5 +1,5 @@
 ---
-import FooterIcon from "@icons/Footer-icon.svg";
+import FooterIcon from "@icons/Footer-icon.astro";
 import HouseIcon from "@icons/House.svg";
 import ServicesIcon from "@icons/Services.svg";
 import PackagesIcon from "@icons/Packages.svg";
@@ -24,15 +24,16 @@ const links = [
 ];
 ---
 
-<footer>
-  <div>
-    <div class="icon-container"><FooterIcon /></div>
-    <nav>
-      <ul>
+<footer class="bg-footer text-accent pt-12 text-center font-bold">
+  <div class="mb-8 md:flex md:justify-evenly md:gap-8">
+    <FooterIcon width="350" height="110" class="mx-auto block md:flex-1" />
+    <nav class="flex-1">
+      <ul class="my-4 grid justify-center gap-4 md:grid-cols-3">
         {
           links.map(({ Icon, text, href }) => (
             <li>
               <a
+                class="flex items-center gap-2 text-xl"
                 href={href}
                 target={href.startsWith("https") ? "_blank" : "_self"}
               >
@@ -47,51 +48,5 @@ const links = [
       </ul>
     </nav>
   </div>
-  <p>Nagare studio {currentYear}. Todos los derechos reservados</p>
+  <p class="text-text py-4">Nagare studio {currentYear}. Todos los derechos reservados</p>
 </footer>
-
-<style>
-  footer {
-    background: rgba(208, 196, 172, 0.304);
-    padding-top: 3rem;
-    text-align: center;
-    color: var(--color-accent);
-    font-weight: bold;
-    .container-icon {
-      width: 100%;
-    }
-    ul {
-      display: grid;
-      justify-content: center;
-      gap: 10px;
-    }
-    a {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 1.2rem;
-      span {
-        display: flex;
-      }
-    }
-
-    p {
-      padding-block: 1rem;
-      color: var(--color-text);
-    }
-  }
-  @media (width >= 768px) {
-    footer {
-      padding-top: 1rem;
-    }
-    footer > div {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-    footer ul {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-</style>
