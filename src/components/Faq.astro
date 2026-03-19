@@ -34,22 +34,23 @@ const items = [
 ---
 
 <section id={"faqs"} class="text-text mx-auto py-20 font-bold lg:w-[90%]">
-  <h2 class="text-accent mb-8 text-4xl leading-none md:text-5xl">Preguntas Frecuentes</h2>
+  <h2 class="text-accent mb-8 text-center text-4xl leading-none md:text-5xl">
+    Preguntas <span class="block md:inline">Frecuentes</span>
+  </h2>
 
   <ul>
     {
       items.map((i) => (
-        <li class="border-t-text border-t p-4 first:border-none">
-          <div class="content-wrapper overflow-hidden">
-            <h3>
-              <button>
-                {i.title} <span>+</span>
-              </button>
-            </h3>
+        <li class="border-t-text overflow-hidden border-t px-4 pl-2 first:border-none">
+          <h3>
+            <button class="flex w-full items-center justify-between text-left text-xl hover:cursor-pointer md:text-2xl">
+              {i.title}{" "}
+              <span class="text-3xl font-normal transition-transform duration-200">+</span>
+            </button>
+          </h3>
 
-            <div class="max-h-0 transition-[max-height] duration-300">
-              <p>{i.description}</p>
-            </div>
+          <div class="max-h-0 transition-[max-height] duration-300">
+            <p class="my-4 text-xl">{i.description}</p>
           </div>
         </li>
       ))
@@ -61,48 +62,20 @@ const items = [
   document.querySelectorAll("#faqs li").forEach((faq) => {
     faq.addEventListener("click", (e) => {
       const targetedFaq = e.currentTarget;
-      const btn = targetedFaq.querySelector("button");
+      const faqDescription = targetedFaq.querySelector("div");
+      const btn = targetedFaq.querySelector("button span");
+
+      // no matter if is open or close, toggle rotate for button
+      btn.classList.toggle("-rotate-45");
+
+      // if maxHeight is not empty means that menu is open
+      const isOpen = faqDescription.style.maxHeight !== "";
+
+      // create the new height based on scroll height of parent container
+      const faqDescriptionHeight = isOpen ? null : `${targetedFaq.scrollHeight}px`;
+
+      // assign height to description container
+      faqDescription.style.maxHeight = faqDescriptionHeight;
     });
   });
 </script>
-
-<style>
-  .content {
-    display: flex;
-    p {
-      margin-top: 1rem;
-      width: 90%;
-      font-size: 1.3rem;
-    }
-  }
-  button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    color: inherit;
-    font-size: clamp(1.2rem, 5vw, 1.5rem);
-    text-align: left;
-    font-weight: bold;
-    &:hover {
-      cursor: pointer;
-    }
-
-    span {
-      font-weight: normal;
-      margin-left: 1rem;
-      display: inline-block;
-      font-size: 2rem;
-      transition: transform 0.3s ease-out;
-      &.open-btn {
-        transform: rotate(45deg);
-      }
-    }
-  }
-
-  @media (width>=768px) {
-    .faq {
-      width: 90%;
-    }
-  }
-</style>
