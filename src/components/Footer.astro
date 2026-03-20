@@ -24,7 +24,7 @@ const links = [
 ];
 ---
 
-<footer class="bg-footer text-accent pt-12 text-center font-bold">
+<footer class="bg-footer text-accent fixed bottom-0 pt-12 text-center font-bold">
   <div class="mb-8 md:flex md:justify-evenly md:gap-8">
     <FooterIcon width="350" height="110" class="mx-auto block md:flex-1" />
     <nav class="flex-1">
@@ -50,9 +50,3 @@ const links = [
   </div>
   <p class="text-text py-4">Nagare studio {currentYear}. Todos los derechos reservados</p>
 </footer>
-
-<style>
-  footer {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-</style>
