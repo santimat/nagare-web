@@ -7,3 +7,4 @@
 - Astro v6
 - Tailwind 8
 - Vercel deploy
+- Resend
