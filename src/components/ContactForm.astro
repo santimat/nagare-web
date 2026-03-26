@@ -3,8 +3,8 @@ import { Image } from "astro:assets";
 import CharacterImage from "@icons/Hero.astro";
 ---
 
-<main class="relative h-full">
-  <div class="text-neutral bg-main mx-auto mt-8 w-[90%] rounded-xl p-4 shadow-xl">
+<main class="relative mb-20 h-full">
+  <div class="text-neutral bg-main mx-auto mt-8 mb-8 w-[90%] rounded-xl p-4 shadow-xl">
     <h1 class="font-heading mb-4 text-center text-3xl">Formulario de contacto</h1>
     <form>
       <div class="mb-4 flex flex-col">
@@ -48,15 +48,3 @@ import CharacterImage from "@icons/Hero.astro";
     </div>
   </div>
 </main>
-
-<style>
-  @media (width <= 768px) {
-    .wrapper {
-      width: 90%;
-      margin-bottom: 2rem;
-    }
-    .icon-container {
-      width: 9rem;
-    }
-  }
-</style>
