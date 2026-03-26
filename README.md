@@ -1,7 +1,7 @@
 # Nagare web page
 
 ## About us
-- Nagare is a web development and design startup created by me and my girlfriend Julieta. Our mission is give to small business their first chance of have a web page and that they can grow up his popularity.
+- Nagare is a web development and design startup created by me and my girlfriend Julieta. Our mission is to give small businesses their first chance to have a web page and to improve their popularity.
 
 ## Stack 
 - Astro v6
