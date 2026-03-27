@@ -1,27 +1,30 @@
 ---
 import EnhancedIcon from "@icons/EnhancedPerson.astro";
 import CloudIcon from "@icons/Cloud.astro";
-
+import WomenCharacter from "@icons/WomenCharacter.astro";
 const services = ["Landing Pages", "Diseño Web", "Logotipos", "Branding", "UX/UI", "Ecommerce"];
 ---
 
 <section id="services" class="mx-auto mb-20 max-w-[95%] text-center">
   <div>
-    <h2 class="text-accent text-[clamp(2.3rem,3vw,3.2rem)] font-bold">Servicios</h2>
-    <p class="text-text text-xl text-[clamp(1.25rem,3vw,1.5rem)] font-semibold text-balance">
-      Mezcla y combina nuestros servicios para que encajen con tus necesidades.
-    </p>
-  </div>
-  <article
-    class="bg-accent text-neutral relative mx-auto my-8 max-w-[320px] rounded-4xl p-6 leading-none shadow-2xl"
-  >
-    <div class="mb-6 flex items-center">
-      <EnhancedIcon class="w-24 md:w-36" />
-      <h3 class="text-3xl md:text-4xl">¿Necesitás otra cosa?</h3>
+    <div>
+      <h2 class="text-accent text-[clamp(2.3rem,3vw,3.2rem)] font-bold">Servicios</h2>
+      <p class="text-text text-xl text-[clamp(1.25rem,3vw,1.5rem)] font-semibold text-balance">
+        Mezcla y combina nuestros servicios para que encajen con tus necesidades.
+      </p>
     </div>
-    <p class="text-left text-xl md:text-2xl">
-      Contactanos para ver como podemos adaptarnos a tus necesidades.
-    </p>
-    <CloudIcon class="absolute -right-2 -bottom-8" width={90} height={80} />
-  </article>
+    <article
+      class="bg-accent text-neutral relative mx-auto my-8 max-w-[320px] rounded-4xl p-6 leading-none shadow-2xl"
+    >
+      <div class="mb-6 flex items-center">
+        <EnhancedIcon class="w-24 md:w-36" />
+        <h3 class="text-3xl md:text-4xl">¿Necesitás otra cosa?</h3>
+      </div>
+      <p class="text-left text-xl md:text-2xl">
+        Contactanos para ver como podemos adaptarnos a tus necesidades.
+      </p>
+      <CloudIcon class="absolute -right-2 -bottom-8" width={90} height={80} />
+    </article>
+  </div>
+  <div></div>
 </section>

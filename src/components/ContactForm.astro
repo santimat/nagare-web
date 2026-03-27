@@ -3,10 +3,12 @@ import { Image } from "astro:assets";
 import CharacterImage from "@icons/Hero.astro";
 ---
 
-<main class="relative mb-20 h-full">
-  <div class="text-neutral bg-main mx-auto mt-8 mb-8 w-[90%] rounded-xl p-4 shadow-xl">
+<main class="mb-20 h-full">
+  <div
+    class="text-neutral bg-main relative mx-auto mt-8 mb-8 w-[90%] rounded-xl p-4 shadow-xl md:max-w-2xl"
+  >
     <h1 class="font-heading mb-4 text-center text-3xl">Formulario de contacto</h1>
-    <form>
+    <form id="contact-form">
       <div class="mb-4 flex flex-col">
         <label for="email" class="text-1xl font-text mb-1 ml-1 font-bold">Coloque su email:</label>
         <div
@@ -48,3 +50,31 @@ import CharacterImage from "@icons/Hero.astro";
     </div>
   </div>
 </main>
+<script>
+  import { Resend } from "resend";
+  const form = document.querySelector("#contact-form");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = e.currentTarget;
+    formData.values().forEach((v) => console.log(v));
+  });
+
+  const resend = new Resend(import.meta.env.PUBLIC_RESEND_API);
+  async function sendEmail() {
+    const response = await resend.emails.send({
+      from: "me",
+      to: ["tinomaturo14@gmail.com"],
+      subject: "testing resend",
+      html: "<h1>hi bro that shit is working!</h1>",
+    });
+
+    return Response.json(response, {
+      status: response.error ? 500 : 200,
+    });
+  }
+
+  const result = await sendEmail();
+
+  console.log(result);
+</script>
