@@ -50,31 +50,28 @@ import CharacterImage from "@icons/Hero.astro";
     </div>
   </div>
 </main>
+
 <script>
-  import { Resend } from "resend";
-  const form = document.querySelector("#contact-form");
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
+  const form = document.getElementById("contact-form");
 
-    const formData = e.currentTarget;
-    formData.values().forEach((v) => console.log(v));
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = form.elements["email"].value;
+    const query = form.elements["query"].value;
+
+    // Opcional: Limpiar el formulario después de enviarlo
+    // form.reset();
+
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      body: JSON.stringify({ email, query }),
+    });
+
+    if (response.ok) {
+      console.log("Email sent successfully");
+    } else {
+      console.error("Failed to send email");
+    }
   });
-
-  const resend = new Resend(import.meta.env.PUBLIC_RESEND_API);
-  async function sendEmail() {
-    const response = await resend.emails.send({
-      from: "me",
-      to: ["tinomaturo14@gmail.com"],
-      subject: "testing resend",
-      html: "<h1>hi bro that shit is working!</h1>",
-    });
-
-    return Response.json(response, {
-      status: response.error ? 500 : 200,
-    });
-  }
-
-  const result = await sendEmail();
-
-  console.log(result);
 </script>
