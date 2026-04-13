@@ -64,6 +64,9 @@ import CharacterImage from "@icons/Hero.astro";
 
     const response = await fetch("/api/send-email", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ email, query }),
     });
 
@@ -72,5 +75,8 @@ import CharacterImage from "@icons/Hero.astro";
     } else {
       console.error("Failed to send email");
     }
+
+    const data = await response.json();
+    console.log(data);
   });
 </script>

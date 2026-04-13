@@ -11,7 +11,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await resend.emails.send({
       from: "Nagare Web <nagare@nagarestudio.site>",
-      to: email,
+      to: [email],
       subject: "Consulta recibida",
       html: `<h1>Hemos recibido tu consulta!</h1>
              <p><strong>Hola ${email}!</strong>, Gracias por contactarnos. Nos pondremos en contacto contigo pronto.</p>
