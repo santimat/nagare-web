@@ -9,7 +9,6 @@ export const POST: APIRoute = async ({ request }) => {
   const body = await request.json();
   const { email, query } = body;
   try {
-    // client email
     const data = await resend.emails.send({
       from: "Nagare Web <nagare@nagarestudio.site>",
       to: email,
