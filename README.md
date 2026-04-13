@@ -7,4 +7,4 @@
 - Astro v6
 - Tailwind 8
 - Vercel deploy
-- Resend
+- Resend with endpoing /api/emails by astro server output and vercel adapter
