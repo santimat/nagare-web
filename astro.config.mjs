@@ -1,12 +1,9 @@
 import { defineConfig } from "astro/config";
 import talwindcss from "@tailwindcss/vite";
-import vercel from "@astrojs/vercel";
 import path from "path";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: vercel(),
   vite: {
     plugins: [talwindcss()],
     resolve: {

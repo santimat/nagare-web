@@ -30,7 +30,7 @@ import CharacterImage from "@icons/Hero.astro";
           class="input-container bg-lighter focus:outline-neutral rounded-2xl opacity-80 transition duration-200 focus:outline-2 focus:outline-solid"
         >
           <textarea
-            class="ml-0.5 w-full resize-none overflow-y-auto rounded-2xl border-none bg-transparent p-2 text-xl opacity-100 focus-within:border-none focus-within:outline-none"
+            class="ml-0.5 w-full resize-none overflow-y-auto rounded-2xl border-none bg-transparent p-2 text-xl text-inherit opacity-100 focus-within:border-none focus-within:outline-none"
             name="query"
             id="query"
             rows="6"
@@ -44,9 +44,6 @@ import CharacterImage from "@icons/Hero.astro";
         value="Enviar consulta"
       />
     </form>
-  </div>
-  <div class="absolute bottom-0 left-0 w-50">
-    <CharacterImage />
   </div>
 </main>
 
@@ -75,8 +72,5 @@ import CharacterImage from "@icons/Hero.astro";
     } else {
       console.error("Failed to send email");
     }
-
-    const data = await response.json();
-    console.log(data);
   });
 </script>
