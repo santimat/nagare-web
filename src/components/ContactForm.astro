@@ -72,7 +72,7 @@ import CharacterImage from "@icons/Hero.astro";
   });
 
   async function sendEmail({ email, message }) {
-    const response = await fetch(`/api/emails/send-email`, {
+    const response = await fetch(`${location.host}/api/emails/send-email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
