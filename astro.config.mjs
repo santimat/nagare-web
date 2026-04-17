@@ -1,9 +1,11 @@
 import { defineConfig } from "astro/config";
 import talwindcss from "@tailwindcss/vite";
 import path from "path";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://nagarestudio.site",
   vite: {
     plugins: [talwindcss()],
     resolve: {
@@ -16,4 +18,6 @@ export default defineConfig({
       },
     },
   },
+  adapter: vercel(),
+  output: "server",
 });
