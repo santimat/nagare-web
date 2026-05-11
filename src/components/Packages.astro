@@ -2,7 +2,7 @@
 import Package from "@components/Package.astro";
 import CustomPackage from "@components/CustomPackage.astro";
 
-const packages = [
+const PACKAGES = [
   {
     title: "takumi",
     details: [
@@ -40,7 +40,7 @@ const packages = [
     </h2>
     <div class="grid gap-15 md:auto-rows-fr lg:w-full lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
       {
-        packages.map((p, i) => {
+        PACKAGES.map((p, i) => {
           const { title, details, price, kanji } = p;
           return (
             <Package title={title} details={details} price={price} kanji={kanji} icon={i === 0} />

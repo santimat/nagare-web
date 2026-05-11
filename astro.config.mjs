@@ -6,6 +6,8 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   site: "https://nagarestudio.site",
+  adapter: vercel(),
+  output: "server",
   vite: {
     plugins: [talwindcss()],
     resolve: {
@@ -18,6 +20,4 @@ export default defineConfig({
       },
     },
   },
-  adapter: vercel(),
-  output: "server",
 });
