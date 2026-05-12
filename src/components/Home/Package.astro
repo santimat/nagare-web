@@ -22,7 +22,7 @@ const { title, description, details, icon = false, price, kanji }: PackageProps 
 
 <li class="flex">
   <article
-    class="bg-lighter relative mx-auto flex h-full w-full flex-col rounded-4xl px-4 py-6 font-bold shadow-lg"
+    class="bg-lighter relative mx-auto flex h-full w-full flex-col justify-between rounded-4xl px-4 py-6 font-bold shadow-lg"
   >
     {icon && <Tag width={80} height={80} class="absolute -top-8 left-0" />}
     <span class="outlined-text text-accent text-outline absolute top-4 -right-2 rotate-20 text-5xl"
@@ -30,7 +30,7 @@ const { title, description, details, icon = false, price, kanji }: PackageProps 
     >
     <h3 class="text-accent text-6xl capitalize md:text-7xl">{title}</h3>
 
-    <ol id="package-list" class="text-text my-10 text-2xl capitalize md:text-3xl">
+    <ol id="package-list" class="text-text my-10 text-3xl capitalize">
       {
         details?.map(({ title, description }) => (
           <PackageDetail title={title} description={description} />

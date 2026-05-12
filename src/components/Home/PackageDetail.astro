@@ -9,12 +9,18 @@ interface PackageDetailProps {
 const { title, description }: PackageDetailProps = Astro.props;
 ---
 
-<li class="mb-4 overflow-hidden hover:cursor-pointer">
-  <h4 class="flex items-center gap-2">
+<li class="mb-4 overflow-hidden">
+  <h4 class="flex items-center gap-2 hover:cursor-pointer">
     <Chevron width="32" class="transition-transform duration-200" />
     {title}
   </h4>
-  <ol class="ml-2 max-h-0 transition-[max-height] duration-300 ease-in-out">
-    {description.map((d) => <li class="text-text text-lg capitalize md:text-xl">{d}</li>)}
+  <ol class="ml-8 max-h-0 list-decimal transition-[max-height] duration-500">
+    {
+      description.map((d) => (
+        <li class="text-text capitalize md:text-xl" title={d}>
+          <span class="line-clamp-1">{d}</span>
+        </li>
+      ))
+    }
   </ol>
 </li>
