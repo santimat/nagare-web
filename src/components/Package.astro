@@ -1,6 +1,7 @@
 ---
 import Tag from "@icons/Tag.astro";
 import PackageDetail from "@components/PackageDetail.astro";
+import PackageButton from "./PackageButton.astro";
 
 interface Detail {
   title: string;
@@ -42,10 +43,7 @@ const { title, description, details, icon = false, price, kanji }: PackageProps 
         >Precio Total</small
       >${price}</span
     >
-    <button
-      class="bg-accent text-neutral mx-auto mt-8 block rounded-2xl px-5 py-3 text-2xl transition-transform duration-200 hover:scale-105 hover:cursor-pointer md:text-3xl"
-      >Adquirir</button
-    >
+    <PackageButton text="Adquirir" class="mx-auto" />
   </article>
 </li>
 
