@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import CharacterImage from "@icons/CharacterIcon.astro";
+import ContactForm from "@components/Contact/ContactForm.astro";
+---
+
+<main class="mb-20 h-full">
+  <div
+    class="text-neutral bg-main relative mx-auto mt-8 mb-8 w-[90%] rounded-xl p-4 shadow-xl md:max-w-2xl"
+  >
+    <h1 class="font-heading mb-4 text-center text-3xl">Formulario de contacto</h1>
+    <ContactForm />
+    <div>
+      <CharacterImage
+        class="absolute -bottom-4 -left-4 h-40 w-40 md:-bottom-15 md:-left-15 md:h-60 md:w-60"
+      />
+    </div>
+  </div>
+</main>
+
+<script>
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const dataToSend = {
+      email: form.email.value,
+      message: form.message.value,
+    };
+
+    const response = await sendEmail(dataToSend);
+
+    form.reset();
+  });
+
+  async function sendEmail({ email, message }) {
+    const content = JSON.stringify({ email, message });
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: content,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (e) {
+      console.log(`Error: ${e.message} en: ${e.stack}`);
+    }
+  }
+</script>
