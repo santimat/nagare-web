@@ -67,34 +67,34 @@ const navItems = [
 </header>
 
 <script>
-  import type { transform } from "astro:schema";
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    const listItem = document.querySelectorAll("header li");
+    const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
 
-  const listItem = document.querySelectorAll("header li");
-  const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
+    const updateMenuBackDrop = (item) => {
+      const { left, top, width, height } = item.getBoundingClientRect();
 
-  const updateMenuBackDrop = (item) => {
-    const { left, top, width, height } = item.getBoundingClientRect();
-
-    // Object assign to update multiple styles at once
-    Object.assign(menuBackDrop.style, {
-      transform: `translate(${left}px, ${top}px)`,
-      width: `${width}px`,
-      height: `${height}px`,
-      opacity: "1",
-      visibility: "visible",
-    });
-  };
-
-  listItem.forEach((item) => {
-    item.addEventListener("mouseenter", () => updateMenuBackDrop(item));
-
-    item.addEventListener("mouseleave", () => {
+      // Object assign to update multiple styles at once
       Object.assign(menuBackDrop.style, {
-        opacity: "0",
-        visibility: "hidden",
+        transform: `translate(${left}px, ${top}px)`,
+        width: `${width}px`,
+        height: `${height}px`,
+        opacity: "1",
+        visibility: "visible",
+      });
+    };
+
+    listItem.forEach((item) => {
+      item.addEventListener("mouseenter", () => updateMenuBackDrop(item));
+
+      item.addEventListener("mouseleave", () => {
+        Object.assign(menuBackDrop.style, {
+          opacity: "0",
+          visibility: "hidden",
+        });
       });
     });
-  });
+  }
 </script>
 
 <script>
