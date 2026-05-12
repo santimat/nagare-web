@@ -1,5 +1,5 @@
 ---
-import FaqItem from "./FaqItem.astro";
+import FaqItem from "@components/Home/FaqItem.astro";
 
 const ITEMS = [
   {
@@ -32,7 +32,7 @@ const ITEMS = [
     description:
       "Ofrecemos soporte post-entrega para asegurarnos de que estés satisfecho con el resultado final. Si necesitas ayuda después de que el proyecto esté terminado, no dudes en contactarnos y estaremos encantados de ayudarte.",
   },
-];
+] as const;
 ---
 
 <section id={"faqs"} class="text-text lazy-section mx-auto py-20 font-bold lg:w-[90%]">
@@ -46,23 +46,21 @@ const ITEMS = [
 </section>
 
 <script>
-  document.querySelectorAll("#faqs li").forEach((faq) => {
-    faq.addEventListener("click", (e) => {
-      const targetedFaq = e.currentTarget;
-      const faqDescription = targetedFaq.querySelector("div");
-      const btn = targetedFaq.querySelector("button span");
+  const faqList = document.querySelector("#faqs ul");
 
-      // no matter if is open or close, toggle rotate for button
-      btn.classList.toggle("-rotate-45");
+  faqList.addEventListener("click", (e) => {
+    const targetedFaq = e.target.closest("li");
 
-      // if maxHeight is not empty means that menu is open
-      const isOpen = faqDescription.style.maxHeight !== "";
+    // prevent open a faq when click on another faqList's site
+    if (!targetedFaq) return;
 
-      // create the new height based on scroll height of parent container
-      const faqDescriptionHeight = isOpen ? null : `${targetedFaq.scrollHeight}px`;
+    const faqDescription = targetedFaq.querySelector("div");
+    const isOpen = faqDescription.style.maxHeight !== "";
 
-      // assign height to description container
-      faqDescription.style.maxHeight = faqDescriptionHeight;
-    });
+    const btn = targetedFaq.querySelector("button span");
+    btn.classList.toggle("-rotate-45");
+
+    const faqDescriptionHeight = isOpen ? null : `${targetedFaq.scrollHeight}px`;
+    faqDescription.style.maxHeight = faqDescriptionHeight;
   });
 </script>
