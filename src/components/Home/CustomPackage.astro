@@ -4,11 +4,11 @@ const DATA_PACKAGE = {
   description:
     "Si tenes clara tu idea, comunicate con nosotros para crear un pack de servicios completamente personalizado.",
   liItems: ["Diseño y desarrollo web", "Logo e identidad visual", "Estrategia de marca"],
-};
+} as const;
 
-import Check from "@icons/Check.astro";
-import ComputerPkg from "@icons/ComputerPkg.astro";
-import PackageButton from "./PackageButton.astro";
+import Check from "@icons/Check.svg";
+import ComputerPkg from "@icons/ComputerPkg.svg";
+import PackageButton from "@components/Home/PackageButton.astro";
 ---
 
 <li class="md:cols-span-2 flex lg:col-span-3">

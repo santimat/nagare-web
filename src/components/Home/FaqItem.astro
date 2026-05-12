@@ -8,14 +8,14 @@ const { title, description }: FaqItemProps = Astro.props;
 ---
 
 <li class="border-t-text overflow-hidden border-t px-4 pt-2 first:border-none">
-  <h3 class="pb-4">
+  <h4 class="pb-4">
     <button
       class="flex w-full items-center justify-between text-left text-xl hover:cursor-pointer md:text-2xl"
     >
       {title}
       <span class="text-3xl font-normal transition-transform duration-200">+</span>
     </button>
-  </h3>
+  </h4>
 
   <div class="max-h-0 font-normal transition-[max-height] duration-300">
     <div class="pb-4">

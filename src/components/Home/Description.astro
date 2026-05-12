@@ -1,11 +1,11 @@
 ---
-import Teapot from "@icons/Teapot.astro";
-import Teacup from "@icons/Teacup.astro";
+import Teapot from "@icons/Teapot.svg";
+import Teacup from "@icons/Teacup.svg";
 
-const items = [
+const ITEMS = [
   "Acompañamos a marcas a construir su presencia digital desde la autenticidad y el diseño consciente.",
   "Desde logotipos hasta interfaces, creamos diseños visuales que cuentan historias y dejan huella.",
-];
+] as const;
 ---
 
 <section id="description" class="text-text mx-auto mb-20 w-11/12 rounded-4xl px-6 py-10 shadow-xl">
@@ -18,7 +18,7 @@ const items = [
     </h3>
     <ul class="flex flex-col justify-between gap-3 md:flex-row">
       {
-        items.map((li) => (
+        ITEMS.map((li) => (
           <li class="max-w-[40ch] text-xl text-balance md:text-[1.4rem] md:last:text-right">
             {li}
           </li>

@@ -1,8 +1,8 @@
 ---
-import HeaderIcon from "../icons/Header.astro";
-import BurgerIcon from "../icons/Burguer.astro";
+import HeaderIcon from "@icons/Header.svg";
+import BurgerIcon from "@icons/Burguer.svg";
 
-const navItems = [
+const NAV_ITEMS = [
   {
     href: "/#packages",
     text: "Precios",
@@ -15,7 +15,7 @@ const navItems = [
     href: "/contact",
     text: "Contacto",
   },
-];
+] as const;
 ---
 
 <header id="header" class="group md:relative">
@@ -41,7 +41,7 @@ const navItems = [
         class="font-text text-main relative flex flex-col gap-4 text-center text-2xl font-bold md:flex-row"
       >
         {
-          navItems.map(({ href, text }) => (
+          NAV_ITEMS.map(({ href, text }) => (
             <li class="transition-transform active:scale-105">
               <a class="p-2" href={href}>
                 {text}

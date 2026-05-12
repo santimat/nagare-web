@@ -1,6 +1,6 @@
 ---
-import Package from "@components/Package.astro";
-import CustomPackage from "@components/CustomPackage.astro";
+import Package from "@components/Home/Package.astro";
+import CustomPackage from "@components/Home/CustomPackage.astro";
 
 const PACKAGES = [
   {
@@ -30,7 +30,7 @@ const PACKAGES = [
     price: "550.000",
     kanji: "なか",
   },
-];
+] as const;
 ---
 
 <section

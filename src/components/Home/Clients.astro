@@ -1,11 +1,11 @@
 ---
-import ComputerIcon from "@icons/Computer.astro";
-import CompanyIcon from "@icons/Company.astro";
-import CreatorsIcon from "@icons/Creators.astro";
-import JapanWomenIcon from "@icons/Japanwomen.astro";
-import RamenIcon from "@icons/Ramen.astro";
+import ComputerIcon from "@icons/Computer.svg";
+import CompanyIcon from "@icons/Company.svg";
+import CreatorsIcon from "@icons/Creators.svg";
+import JapanWomenIcon from "@icons/Japanwomen.svg";
+import RamenIcon from "@icons/Ramen.svg";
 
-const targets = [
+const TARGETS = [
   {
     icon: ComputerIcon,
     heading: "Comercios",
@@ -24,7 +24,7 @@ const targets = [
     description:
       "Construimos plataformas personalizadas que potencian tu contenido y reflejan tu identidad de forma auténtica.",
   },
-];
+] as const;
 ---
 
 <section class="bg-main text-neutral lazy-section mb-20 p-6">
@@ -36,7 +36,7 @@ const targets = [
     </h2>
     <ul class="mb-8 md:mx-auto md:mt-8 md:flex md:items-center md:gap-4">
       {
-        targets.map(({ icon: Icon, heading, description }) => {
+        TARGETS.map(({ icon: Icon, heading, description }) => {
           return (
             <li class="mb-8 md:mb-0">
               <Icon width={95} height={95} />

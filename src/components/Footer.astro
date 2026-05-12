@@ -1,16 +1,16 @@
 ---
-import FooterIcon from "@icons/Footer-icon.astro";
-import HouseIcon from "@icons/House.svg";
-import ServicesIcon from "@icons/Services.svg";
-import PackagesIcon from "@icons/Packages.svg";
-import FAQsIcon from "@icons/Faqs.svg";
 import EmailIcon from "@icons/Email.svg";
+import FAQsIcon from "@icons/Faqs.svg";
+import FooterIcon from "@icons/Footer-icon.svg";
+import HouseIcon from "@icons/House.svg";
 import InstagramIcon from "@icons/Instagram.svg";
+import PackagesIcon from "@icons/Packages.svg";
+import ServicesIcon from "@icons/Services.svg";
 
 const date = new Date();
 const currentYear = date.getFullYear();
 
-const links = [
+const LINKS = [
   { Icon: HouseIcon, text: "Inicio", href: "/" },
   { Icon: ServicesIcon, text: "Servicios", href: "/#services" },
   { Icon: PackagesIcon, text: "Paquetes", href: "/#packages" },
@@ -21,7 +21,7 @@ const links = [
     text: "Instragram",
     href: "https://www.instagram.com/nagare.studio",
   },
-];
+] as const;
 ---
 
 <footer class="bg-footer text-accent lazy-section pt-12 text-center font-bold">
@@ -30,7 +30,7 @@ const links = [
     <nav class="flex-1">
       <ul class="my-4 grid justify-center gap-4 md:grid-cols-3">
         {
-          links.map(({ Icon, text, href }) => (
+          LINKS.map(({ Icon, text, href }) => (
             <li>
               <a
                 class="flex items-center gap-2 text-xl"

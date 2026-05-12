@@ -1,7 +1,10 @@
 ---
 import { ClientRouter } from "astro:transitions";
+interface LayoutProps {
+  title: string;
+}
 
-const { title = "" } = Astro.props;
+const { title = "" }: LayoutProps = Astro.props;
 
 const titleToShow = title ? `- ${title}` : "";
 
