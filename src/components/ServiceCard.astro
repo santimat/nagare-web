@@ -4,16 +4,16 @@ import CloudIcon from "@icons/Cloud.astro";
 ---
 
 <article
-  class="bg-accent text-neutral relative mx-auto my-8 aspect-square max-h-64 max-w-96 rounded-4xl p-4 leading-none shadow-2xl"
+  class="bg-accent text-neutral relative mx-auto my-8 aspect-square max-h-72 max-w-80 rounded-4xl leading-none shadow-2xl md:max-w-96"
 >
-  <div class="flex flex-col justify-around">
-    <div class="mb-6 flex items-center">
-      <EnhancedIcon class="h-auto w-24 md:w-36" />
-      <h3 class="text-3xl text-balance md:text-4xl">¿Necesitás otra cosa?</h3>
+  <div class="flex h-full flex-col justify-around p-6">
+    <div class="flex items-center gap-2">
+      <EnhancedIcon class="w-40" />
+      <h3 class="text-4xl text-balance">¿Necesitás otra cosa?</h3>
     </div>
-    <p class="text-left text-xl text-balance md:text-2xl">
+    <p class="text-left text-2xl text-balance">
       Contactanos para ver como podemos adaptarnos a tus necesidades.
     </p>
   </div>
-  <CloudIcon class="absolute -right-2 -bottom-4 h-auto" width={90} />
+  <CloudIcon class="absolute -right-2 -bottom-4" width={100} />
 </article>
