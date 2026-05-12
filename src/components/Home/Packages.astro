@@ -6,8 +6,8 @@ const PACKAGES = [
   {
     title: "takumi",
     details: [
-      { title: "identidad visual", description: "..." },
-      { title: "diseño web", description: "..." },
+      { title: "identidad visual", description: ["..."] },
+      { title: "diseño web", description: ["..."] },
     ],
     price: "710.000",
     kanji: "たくみ",
@@ -15,8 +15,8 @@ const PACKAGES = [
   {
     title: "hajime",
     details: [
-      { title: "identidad visual", description: "..." },
-      { title: "diseño web", description: "..." },
+      { title: "identidad visual", description: ["..."] },
+      { title: "diseño web", description: ["..."] },
     ],
     price: "380.000",
     kanji: "始め",
@@ -24,8 +24,8 @@ const PACKAGES = [
   {
     title: "naka",
     details: [
-      { title: "identidad visual", description: "..." },
-      { title: "diseño web", description: "..." },
+      { title: "identidad visual", description: ["..."] },
+      { title: "diseño web", description: ["..."] },
     ],
     price: "550.000",
     kanji: "なか",
@@ -52,3 +52,22 @@ const PACKAGES = [
     <CustomPackage />
   </ul>
 </section>
+
+<script>
+  const packages = document.getElementById("packages");
+
+  // Event delegation for package details toggle
+  packages.addEventListener("click", ({ target }) => {
+    const targetedPackageDetail = target.closest("li #package-list li");
+    if (!targetedPackageDetail) return;
+
+    // apply styles and get the elements, only if the click was on a package detail item
+    const packageDetailContainer = targetedPackageDetail?.querySelector("ol");
+    const isOpen = packageDetailContainer.style.maxHeight !== "";
+    const packageDetailChevron = targetedPackageDetail?.querySelector("h4 svg");
+    const newHeight = !isOpen ? `${packageDetailContainer.scrollHeight}px` : null;
+
+    packageDetailChevron.classList.toggle("rotate-90");
+    packageDetailContainer.style.maxHeight = newHeight;
+  });
+</script>

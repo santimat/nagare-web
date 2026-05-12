@@ -3,7 +3,7 @@ import Chevron from "@icons/Chevron.svg";
 
 interface PackageDetailProps {
   title: string;
-  description: string;
+  description: string[];
 }
 
 const { title, description }: PackageDetailProps = Astro.props;
@@ -14,7 +14,7 @@ const { title, description }: PackageDetailProps = Astro.props;
     <Chevron width="32" class="transition-transform duration-200" />
     {title}
   </h4>
-  <div class="ml-2 max-h-0 transition-[max-height] duration-300 ease-in-out">
-    <p>{description}</p>
-  </div>
+  <ol class="ml-2 max-h-0 transition-[max-height] duration-300 ease-in-out">
+    {description.map((d) => <li class="text-text text-lg capitalize md:text-xl">{d}</li>)}
+  </ol>
 </li>

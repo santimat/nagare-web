@@ -5,7 +5,7 @@ import PackageButton from "@components/Home/PackageButton.astro";
 
 interface Detail {
   title: string;
-  description: string;
+  description: string[];
 }
 
 interface PackageProps {
@@ -30,13 +30,13 @@ const { title, description, details, icon = false, price, kanji }: PackageProps 
     >
     <h3 class="text-accent text-6xl capitalize md:text-7xl">{title}</h3>
 
-    <ul class="text-text package-details my-10 text-2xl capitalize md:text-3xl">
+    <ol id="package-list" class="text-text my-10 text-2xl capitalize md:text-3xl">
       {
         details?.map(({ title, description }) => (
           <PackageDetail title={title} description={description} />
         ))
       }
-    </ul>
+    </ol>
     <span
       class="text-accent bg-neutral relative mx-auto block w-fit rounded-4xl px-5 py-3 text-4xl md:text-5xl"
       ><small class="outlined-text absolute -top-4 -left-4 -rotate-12 text-xl md:text-2xl"
@@ -46,24 +46,3 @@ const { title, description, details, icon = false, price, kanji }: PackageProps 
     <PackageButton text="Adquirir" class="mx-auto" />
   </article>
 </li>
-
-<script>
-  // accordion for package details
-  document.querySelectorAll(".package-details li").forEach((detail) => {
-    detail.addEventListener("click", (e) => {
-      // get element which has listener associated to it
-      const targetedDetail = e.currentTarget;
-      const detailDescription = targetedDetail.querySelector("div");
-      const detailChevron = targetedDetail.querySelector("h4 svg");
-      const isOpen = detailDescription.style.maxHeight !== "";
-
-      detailChevron.classList.toggle("rotate-90");
-      if (!isOpen) {
-        detailDescription.style.maxHeight = `${detailDescription.scrollHeight}px`;
-        return;
-      }
-
-      detailDescription.style.maxHeight = null;
-    });
-  });
-</script>
