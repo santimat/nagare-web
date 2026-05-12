@@ -1,8 +1,4 @@
----
-const { class: className, ...props } = Astro.props;
----
-
-<svg xmlns="http://www.w3.org/2000/svg" class={className} {...props} fil="none" viewBox="0 0 105 73"
+<svg xmlns="http://www.w3.org/2000/svg" fil="none" viewBox="0 0 105 73"
   ><mask id="path-1-outside-1_32_37" x="-1" y="0" fill="#000" maskUnits="userSpaceOnUse"
     ><path fill="#fff" d="M-1 0h106v73H-1z"></path><path
       fill-rule="evenodd"
