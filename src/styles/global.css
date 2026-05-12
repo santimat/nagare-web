@@ -19,20 +19,14 @@
 
 @font-face {
   font-family: "heading";
-  src:
-    url("/fonts/EtherealDemo-Black.woff2") format("woff2"),
-    url("/fonts/EtherealDemo-Black.woff") format("woff"),
-    url("/fonts/EtherealDemo-Black.ttf") format("ttf");
+  src: url("/fonts/EtherealDemo-Black.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "text";
-  src:
-    url("/fonts/SourceSerif4.woff2") format("woff2"),
-    url("/fonts/SourceSerif4.woff") format("woff"),
-    url("/fonts/SourceSerif4.ttf") format("ttf");
+  src: url("/fonts/SourceSerif4.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
