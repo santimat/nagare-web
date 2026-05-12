@@ -1,0 +1,20 @@
+---
+import Chevron from "@icons/Chevron.astro";
+
+interface PackageDetailProps {
+  title: string;
+  description: string;
+}
+
+const { title, description }: PackageDetailProps = Astro.props;
+---
+
+<li class="mb-4 overflow-hidden hover:cursor-pointer">
+  <h4 class="flex items-center gap-2">
+    <Chevron width="32" class="transition-transform duration-200" />
+    {title}
+  </h4>
+  <div class="ml-2 max-h-0 transition-[max-height] duration-300 ease-in-out">
+    <p>{description}</p>
+  </div>
+</li>

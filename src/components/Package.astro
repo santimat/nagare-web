@@ -1,49 +1,53 @@
 ---
 import Tag from "@icons/Tag.astro";
-import Chevron from "@icons/Chevron.astro";
-const { title, description, details, icon = false, price, kanji, custom = false } = Astro.props;
+import PackageDetail from "@components/PackageDetail.astro";
+
+interface Detail {
+  title: string;
+  description: string;
+}
+
+interface PackageProps {
+  title: string;
+  description: string;
+  details: Detail[];
+  icon: boolean;
+  price: number;
+  kanji: string;
+}
+
+const { title, description, details, icon = false, price, kanji }: PackageProps = Astro.props;
 ---
 
-<article class="bg-lighter relative rounded-4xl px-10 py-6 font-bold shadow-lg">
-  {
-    custom && (
-      <div class="custom-badge">
-        <span>Personalizado</span>
-      </div>
-    )
-  }
-  {icon && <Tag width={80} height={80} class="absolute -top-8 left-0" />}
-  <span class="outlined-text text-accent text-outline absolute -top-4 -right-4 rotate-20 text-5xl"
-    >{kanji}</span
+<li class="flex">
+  <article
+    class="bg-lighter relative mx-auto flex h-full w-full flex-col rounded-4xl px-4 py-6 font-bold shadow-lg"
   >
-  <h3 class="text-accent text-6xl capitalize md:text-7xl">{title}</h3>
+    {icon && <Tag width={80} height={80} class="absolute -top-8 left-0" />}
+    <span class="outlined-text text-accent text-outline absolute top-4 -right-2 rotate-20 text-5xl"
+      >{kanji}</span
+    >
+    <h3 class="text-accent text-6xl capitalize md:text-7xl">{title}</h3>
 
-  <ul class="text-text package-details my-10 text-2xl capitalize md:text-3xl">
-    {
-      details?.map(({ title, description }) => (
-        <li class="mb-4 overflow-hidden hover:cursor-pointer">
-          <h4 class="flex items-center gap-2">
-            <Chevron width="32" class="transition-transform duration-200" />
-            {title}
-          </h4>
-          <div class="ml-2 max-h-0 transition-[max-height] duration-300 ease-in-out">
-            <p>{description}</p>
-          </div>
-        </li>
-      ))
-    }
-  </ul>
-  <span
-    class="text-accent bg-neutral relative mx-auto block w-fit rounded-4xl px-5 py-3 text-4xl md:text-5xl"
-    ><small class="outlined-text absolute -top-4 -left-4 -rotate-12 text-xl md:text-2xl"
-      >Precio Total</small
-    >${price}</span
-  >
-  <button
-    class="bg-accent text-neutral mx-auto mt-8 block rounded-2xl px-5 py-3 text-2xl transition-transform duration-200 hover:scale-105 hover:cursor-pointer md:text-3xl"
-    >Adquirir</button
-  >
-</article>
+    <ul class="text-text package-details my-10 text-2xl capitalize md:text-3xl">
+      {
+        details?.map(({ title, description }) => (
+          <PackageDetail title={title} description={description} />
+        ))
+      }
+    </ul>
+    <span
+      class="text-accent bg-neutral relative mx-auto block w-fit rounded-4xl px-5 py-3 text-4xl md:text-5xl"
+      ><small class="outlined-text absolute -top-4 -left-4 -rotate-12 text-xl md:text-2xl"
+        >Precio Total</small
+      >${price}</span
+    >
+    <button
+      class="bg-accent text-neutral mx-auto mt-8 block rounded-2xl px-5 py-3 text-2xl transition-transform duration-200 hover:scale-105 hover:cursor-pointer md:text-3xl"
+      >Adquirir</button
+    >
+  </article>
+</li>
 
 <script>
   // accordion for package details

@@ -33,21 +33,22 @@ const PACKAGES = [
 ];
 ---
 
-<section id="packages" class="lazy-section mx-auto mb-20 w-[85%] md:max-w-120 lg:max-w-[90%]">
-  <div>
-    <h2 class="text-main mb-12 text-center text-4xl font-bold md:text-5xl">
-      Que tu <span class="block md:inline">marca fluya!</span>
-    </h2>
-    <div class="grid gap-15 md:auto-rows-fr lg:w-full lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-      {
-        PACKAGES.map((p, i) => {
-          const { title, details, price, kanji } = p;
-          return (
-            <Package title={title} details={details} price={price} kanji={kanji} icon={i === 0} />
-          );
-        })
-      }
-      <CustomPackage />
-    </div>
-  </div>
+<section
+  id="packages"
+  class="lazy-section mx-auto my-30 flex max-w-11/12 flex-col gap-10 xl:max-w-300"
+>
+  <h2 class="text-main text-center text-4xl font-bold md:text-5xl">
+    Que tu <span class="block md:inline">marca fluya!</span>
+  </h2>
+  <ul class="grid items-stretch gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {
+      PACKAGES.map((p, i) => {
+        const { title, details, price, kanji } = p;
+        return (
+          <Package title={title} details={details} price={price} kanji={kanji} icon={i === 0} />
+        );
+      })
+    }
+    <CustomPackage />
+  </ul>
 </section>
