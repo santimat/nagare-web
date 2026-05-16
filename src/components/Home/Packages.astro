@@ -108,20 +108,33 @@ const PACKAGES = [
 </section>
 
 <script>
-  const $packages = document.getElementById("packages");
+  const init = () => {
+    const $packages = document.getElementById("packages");
+    const handlePackageClick = ({ target }: { target: EventTarget | null }) => {
+      const $targetedPackageDetail = target.closest("li #package-list li");
+      if (!$targetedPackageDetail) return;
 
-  // Event delegation for package details toggle
-  $packages.addEventListener("click", ({ target }) => {
-    const $targetedPackageDetail = target.closest("li #package-list li");
-    if (!$targetedPackageDetail) return;
+      // apply styles and get the elements, only if the click was on a package detail item
+      const $packageDetailContainer = $targetedPackageDetail?.querySelector("ol");
+      const isOpen = $packageDetailContainer.style.maxHeight !== "";
+      const $packageDetailChevron = $targetedPackageDetail?.querySelector("h4 svg");
+      const newHeight = !isOpen ? `${$packageDetailContainer.scrollHeight}px` : null;
 
-    // apply styles and get the elements, only if the click was on a package detail item
-    const $packageDetailContainer = $targetedPackageDetail?.querySelector("ol");
-    const isOpen = $packageDetailContainer.style.maxHeight !== "";
-    const $packageDetailChevron = $targetedPackageDetail?.querySelector("h4 svg");
-    const newHeight = !isOpen ? `${$packageDetailContainer.scrollHeight}px` : null;
+      $packageDetailChevron.classList.toggle("rotate-90");
+      $packageDetailContainer.style.maxHeight = newHeight;
+    };
 
-    $packageDetailChevron.classList.toggle("rotate-90");
-    $packageDetailContainer.style.maxHeight = newHeight;
-  });
+    // Event delegation for package details toggle
+    $packages.addEventListener("click", handlePackageClick);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        $packages.removeEventListener("click", handlePackageClick);
+      },
+      { once: true },
+    );
+  };
+
+  document.addEventListener("astro:page-load", init);
 </script>

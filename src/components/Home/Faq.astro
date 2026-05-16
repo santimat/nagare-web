@@ -46,29 +46,33 @@ const ITEMS = [
 </section>
 
 <script>
-  const $faqList = document.querySelector("#faqs ul");
-  const handleClick = ({ target }: { target: EventTarget | null }) => {
-    const $targetedFaq = target?.closest("li");
+  const init = () => {
+    const $faqList = document.querySelector("#faqs ul");
+    const handleClick = ({ target }: { target: EventTarget | null }) => {
+      const $targetedFaq = target?.closest("li");
 
-    // prevent open a faq when click on another faqList's site
-    if (!$targetedFaq) return;
+      // prevent open a faq when click on another faqList's site
+      if (!$targetedFaq) return;
 
-    const $faqDescription = $targetedFaq.querySelector("div");
-    const isOpen = $faqDescription.style.maxHeight !== "";
+      const $faqDescription = $targetedFaq.querySelector("div");
+      const isOpen = $faqDescription.style.maxHeight !== "";
 
-    const $btn = $targetedFaq.querySelector("button span");
-    $btn.classList.toggle("-rotate-45");
+      const $btn = $targetedFaq.querySelector("button span");
+      $btn.classList.toggle("-rotate-45");
 
-    const faqDescriptionHeight = isOpen ? null : `${$targetedFaq.scrollHeight}px`;
-    $faqDescription.style.maxHeight = faqDescriptionHeight;
+      const faqDescriptionHeight = isOpen ? null : `${$targetedFaq.scrollHeight}px`;
+      $faqDescription.style.maxHeight = faqDescriptionHeight;
+    };
+    $faqList.addEventListener("click", handleClick);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        $faqList?.removeEventListener("click", handleClick);
+      },
+      { once: true },
+    );
   };
-  $faqList.addEventListener("click", handleClick);
 
-  document.addEventListener(
-    "astro:after-swap",
-    () => {
-      $faqList?.removeEventListener("click", handleClick);
-    },
-    { once: true },
-  );
+  document.addEventListener("astro:load", init);
 </script>

@@ -120,7 +120,7 @@ const NAV_ITEMS = [
     $nav?.addEventListener("click", closeNav);
 
     document.addEventListener(
-      "astro:after-swap",
+      "astro:before-swap",
       () => {
         $nav?.removeEventListener("click", closeNav);
       },
