@@ -1,0 +1,12 @@
+---
+import Star from "@icons/Star.svg";
+
+const { badgeText }: { badgeText: string } = Astro.props;
+---
+
+<div class="flex justify-center">
+  <span class="bg-accent text-neutral absolute -top-5 flex items-center gap-2 rounded-xl px-4 py-2">
+    <Star class="w-6" />
+    {badgeText}
+  </span>
+</div>
