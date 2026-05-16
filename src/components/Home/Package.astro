@@ -30,7 +30,7 @@ const { title, description, details, icon = false, price, kanji }: PackageProps 
     >
     <h3 class="text-accent text-6xl capitalize md:text-7xl">{title}</h3>
 
-    <ol id="package-list" class="text-text my-10 text-3xl capitalize">
+    <ol id="package-list" class="text-text my-10 text-3xl">
       {
         details?.map(({ title, description }) => (
           <PackageDetail title={title} description={description} />
