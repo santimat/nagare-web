@@ -69,14 +69,14 @@ const NAV_ITEMS = [
 <script>
   const init = () => {
     if (window.matchMedia("(min-width: 768px)").matches) {
-      const listItem = document.querySelectorAll("header li");
-      const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
+      const $listItems = document.querySelectorAll("header li");
+      const $menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
 
       const updateMenuBackDrop = (item) => {
         const { left, top, width, height } = item.getBoundingClientRect();
 
         // Object assign to update multiple styles at once
-        Object.assign(menuBackDrop.style, {
+        Object.assign($menuBackDrop.style, {
           transform: `translate(${left}px, ${top}px)`,
           width: `${width}px`,
           height: `${height}px`,
@@ -86,13 +86,13 @@ const NAV_ITEMS = [
       };
 
       const resetMenuBackDrop = () => {
-        Object.assign(menuBackDrop.style, {
+        Object.assign($menuBackDrop.style, {
           opacity: "0",
           visibility: "hidden",
         });
       };
 
-      listItem.forEach((item) => {
+      $listItems.forEach((item) => {
         item.addEventListener("mouseenter", () => updateMenuBackDrop(item));
 
         item.addEventListener("mouseleave", resetMenuBackDrop);
@@ -100,7 +100,7 @@ const NAV_ITEMS = [
       document.addEventListener(
         "astro:after-swap",
         () => {
-          listItem.forEach((item) => {
+          $listItems.forEach((item) => {
             item.removeEventListener("mouseenter", () => updateMenuBackDrop(item));
             item.removeEventListener("mouseleave", resetMenuBackDrop);
           });
@@ -111,16 +111,20 @@ const NAV_ITEMS = [
 
     const $nav = document.querySelector("nav");
     const closeNav = (e) => {
-      const menu = document.querySelector("#menu") as HTMLInputElement;
+      const $menu = document.querySelector("#menu") as HTMLInputElement;
       if (e.target.tagName === "A") {
-        menu.checked = false;
+        $menu.checked = false;
       }
     };
     $nav?.addEventListener("click", closeNav);
 
-    document.addEventListener("astro:after-swap", () => {
-      $nav?.removeEventListener("click", closeNav);
-    });
+    document.addEventListener(
+      "astro:after-swap",
+      () => {
+        $nav?.removeEventListener("click", closeNav);
+      },
+      { once: true },
+    );
   };
 
   document.addEventListener("astro:page-load", init);
