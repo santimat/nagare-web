@@ -108,20 +108,20 @@ const PACKAGES = [
 </section>
 
 <script>
-  const packages = document.getElementById("packages");
+  const $packages = document.getElementById("packages");
 
   // Event delegation for package details toggle
-  packages.addEventListener("click", ({ target }) => {
-    const targetedPackageDetail = target.closest("li #package-list li");
-    if (!targetedPackageDetail) return;
+  $packages.addEventListener("click", ({ target }) => {
+    const $targetedPackageDetail = target.closest("li #package-list li");
+    if (!$targetedPackageDetail) return;
 
     // apply styles and get the elements, only if the click was on a package detail item
-    const packageDetailContainer = targetedPackageDetail?.querySelector("ol");
-    const isOpen = packageDetailContainer.style.maxHeight !== "";
-    const packageDetailChevron = targetedPackageDetail?.querySelector("h4 svg");
-    const newHeight = !isOpen ? `${packageDetailContainer.scrollHeight}px` : null;
+    const $packageDetailContainer = $targetedPackageDetail?.querySelector("ol");
+    const isOpen = $packageDetailContainer.style.maxHeight !== "";
+    const $packageDetailChevron = $targetedPackageDetail?.querySelector("h4 svg");
+    const newHeight = !isOpen ? `${$packageDetailContainer.scrollHeight}px` : null;
 
-    packageDetailChevron.classList.toggle("rotate-90");
-    packageDetailContainer.style.maxHeight = newHeight;
+    $packageDetailChevron.classList.toggle("rotate-90");
+    $packageDetailContainer.style.maxHeight = newHeight;
   });
 </script>
