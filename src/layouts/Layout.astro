@@ -28,22 +28,3 @@ import "@styles/global.css";
     <slot />
   </body>
 </html>
-
-<style is:global>
-  section,
-  header {
-    position: relative;
-  }
-
-  /* prevent that body can be scrolleable with the navbar deployed */
-  body:has(#menu:checked) {
-    overflow: hidden;
-  }
-
-  .outlined-text {
-    -webkit-text-stroke: 8px var(--color-neutral);
-    /* for default the browser paint the fill first and later the stroke, it determines that the browser have to paint first the stroke and later the fill */
-    /* with this the filling is painted over the stroke making that it doesnt take space from the text */
-    paint-order: stroke fill;
-  }
-</style>
