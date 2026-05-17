@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import talwindcss from "@tailwindcss/vite";
 import path from "path";
 import vercel from "@astrojs/vercel";
@@ -8,6 +8,36 @@ export default defineConfig({
   site: "https://nagarestudio.site",
   adapter: vercel(),
   output: "server",
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "SS-Heading",
+      cssVariable: "--font-heading",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/SourceSerif4.woff2"],
+            weight: "400",
+            style: "normal",
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: "ED-Text",
+      cssVariable: "--font-text",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/EtherealDemo-Black.woff2"],
+            weight: "400",
+            style: "normal",
+          },
+        ],
+      },
+    },
+  ],
   vite: {
     plugins: [talwindcss()],
     resolve: {

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: "heading";
-  --font-text: "text";
+  --font-heading: var(--font-heading);
+  --font-text: var(--font-text);
 
   --animate-openNav: openNav 0.5s forwards;
 
@@ -17,7 +17,7 @@
   --color-footer: rgba(208, 196, 172, 0.304);
 }
 
-@font-face {
+/* @font-face {
   font-family: "heading";
   src: url("/fonts/EtherealDemo-Black.woff2") format("woff2");
   font-style: normal;
@@ -29,7 +29,7 @@
   src: url("/fonts/SourceSerif4.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
-}
+} */
 
 @keyframes openNav {
   50% {
