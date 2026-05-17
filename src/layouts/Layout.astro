@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import Font from "astro/components/Font.astro";
 interface LayoutProps {
   title: string;
 }
@@ -23,6 +24,8 @@ import "@styles/global.css";
     />
     <title>Nagare {titleToShow}</title>
     <ClientRouter />
+    <Font cssVariable="--font-text" preload />
+    <Font cssVariable="--font-heading" preload />
   </head>
   <body class="bg-neutral font-text">
     <slot />

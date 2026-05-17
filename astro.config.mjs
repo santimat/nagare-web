@@ -11,8 +11,8 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
-      name: "SS-Heading",
-      cssVariable: "--font-heading",
+      name: "SS-text",
+      cssVariable: "--font-text",
       options: {
         variants: [
           {
@@ -25,8 +25,8 @@ export default defineConfig({
     },
     {
       provider: fontProviders.local(),
-      name: "ED-Text",
-      cssVariable: "--font-text",
+      name: "ED-heading",
+      cssVariable: "--font-heading",
       options: {
         variants: [
           {
