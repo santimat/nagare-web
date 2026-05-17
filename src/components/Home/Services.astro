@@ -1,18 +1,55 @@
 ---
 import WomenCharacter from "@icons/WomenCharacter.svg";
 import ServiceCard from "@components/Home/ServiceCard.astro";
+
+const SERVICES: string[] = [
+  "Diseño web",
+  "APIs",
+  "Logos",
+  "E-commerce",
+  "SEO",
+  "Branding",
+  "Idendidad visual",
+  "UX/UI",
+  "Redes sociales",
+  "Paneles de administración",
+] as const;
 ---
 
 <section
   id="services"
-  class="lazy-section mx-auto flex max-w-20/21 items-center gap-20 text-center"
+  class="lazy-section bg-footer relative mx-auto flex h-150 w-full items-center justify-between overflow-hidden text-center"
 >
-  <div data-aos="fade-up">
+  <div class="absolute z-10 xl:left-40">
     <h2 class="text-accent text-[clamp(2.3rem,3vw,3.2rem)] font-bold">Servicios</h2>
     <p class="text-text mx-auto max-w-lg text-2xl font-semibold text-pretty">
       Mezcla y combina nuestros servicios para que encajen con tus necesidades.
     </p>
     <ServiceCard />
   </div>
-  <WomenCharacter width={400} height={400} data-aos="fade-left" />
+  <div id="services-container" class="absolute top-0 right-4 w-full xl:right-40">
+    <ul
+      class="text-accent flex flex-col gap-8 text-right text-7xl leading-24 font-black lg:pt-8 xl:text-9xl"
+    >
+      {SERVICES.map((service) => <li class="service-item text-nowrap">{service}</li>)}
+    </ul>
+  </div>
+  <!-- <WomenCharacter width={400} height={400} data-aos="fade-left" /> -->
 </section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-700px);
+    }
+  }
+  .service-item {
+    animation-name: fadeInUp;
+    animation-timing-function: linear;
+    animation-range: 10% 75%;
+    animation-timeline: scroll(root);
+  }
+</style>

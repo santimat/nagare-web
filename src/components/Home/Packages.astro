@@ -87,14 +87,14 @@ const PACKAGES = [
 ] as const;
 ---
 
-<section id="packages" class="lazy-section mx-auto flex max-w-20/21 flex-col gap-10 xl:max-w-300">
+<section id="packages" class="lazy-section mx-auto flex max-w-20/21 flex-col gap-20 xl:max-w-300">
   <h2 class="text-main text-center text-4xl font-bold md:text-5xl">
     Que tu <span class="block md:inline">marca fluya!</span>
   </h2>
-  <ul class="grid gap-20 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+  <ul class="grid gap-20 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
     {
-      PACKAGES.map((p, i) => {
-        const { title, details, price, kanji } = p;
+      PACKAGES.map((pkg, i) => {
+        const { title, details, price, kanji } = pkg;
         return (
           <Package title={title} details={details} price={price} kanji={kanji} icon={i === 1} />
         );
