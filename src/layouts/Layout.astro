@@ -16,7 +16,7 @@ import "@styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg" href="/favicon.svg" />
     <meta
       name="description"
       content="Nagare - Ofrecemos soluciones digitales para empresas y particulares"
@@ -28,3 +28,18 @@ import "@styles/global.css";
     <slot />
   </body>
 </html>
+
+<script>
+  import AOS from "aos";
+  import "aos/dist/aos.css";
+
+  const init = () => {
+    const config = {
+      duration: 800,
+      once: true,
+    };
+
+    AOS.init(config);
+  };
+  document.addEventListener("astro:page-load", init);
+</script>
