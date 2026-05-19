@@ -41,3 +41,11 @@ header {
   /* with this the filling is painted over the stroke making that it doesnt take space from the text */
   paint-order: stroke fill;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px currentColor inset;
+  box-shadow: 0 0 0px 1000px currentColor inset;
+  -webkit-text-fill-color: currentColor;
+}

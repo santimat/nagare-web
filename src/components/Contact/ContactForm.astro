@@ -1,35 +1,24 @@
-<form id="contact-form">
-  <div class="mb-4 flex flex-col">
-    <label for="email" class="text-1xl font-text mb-1 ml-1 font-bold">Coloque su email:</label>
-    <div
-      class="input-container bg-lighter focus:outline-neutral rounded-2xl opacity-80 transition duration-200 focus:outline-2 focus:outline-solid"
-    >
-      <input
-        id="email"
-        name="email"
-        type="email"
-        required
-        class="ml-0.5 w-full rounded-2xl border-none bg-transparent p-2 text-xl opacity-100 focus-within:border-none focus-within:outline-none"
-      />
-    </div>
-  </div>
-  <div class="mb-16 flex flex-col">
-    <label for="message" class="text-1xl font-text mb-1 ml-1 font-bold">Coloque su consulta</label>
-    <div
-      class="input-container bg-lighter focus:outline-neutral rounded-2xl opacity-80 transition duration-200 focus:outline-2 focus:outline-solid"
-    >
-      <textarea
-        class="ml-0.5 w-full resize-none overflow-y-auto rounded-2xl border-none bg-transparent p-2 text-xl text-inherit opacity-100 focus-within:border-none focus-within:outline-none"
-        name="message"
-        id="message"
-        rows="6"
-        cols="30"></textarea>
-    </div>
-  </div>
+---
+import { actions } from "astro:actions";
+---
 
-  <input
-    class="bg-accent durationduration-300 ml-auto block rounded-xl p-2 text-2xl transition-transform hover:scale-105 hover:cursor-pointer"
-    type="submit"
-    value="Enviar consulta"
-  />
-</form>
+<form id="contact-form" class="mx-auto w-1/2"></form>
+
+<script>
+  import { actions } from "astro:actions";
+  const $form = document.getElementById("contact-form");
+  $form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData($form);
+    const email = formData.get("email");
+    const message = formData.get("message");
+
+    console.log({ email, message });
+
+    const { data, error } = await actions.sendContactInfo({ email, message });
+
+    if (error) return console.log("There is an error! 😪");
+    console.log(data);
+  });
+</script>
