@@ -1,0 +1,43 @@
+:root {
+  scroll-behavior: smooth;
+}
+
+@import "tailwindcss";
+@import "tailwind-animations";
+
+@theme {
+  --font-heading: var(--font-heading);
+  --font-text: var(--font-text);
+
+  --animate-openNav: openNav 0.5s forwards;
+
+  --color-neutral: #f2e8d5;
+  --color-text: #77797c;
+  --color-darker: #1e3219;
+  --color-main: #528dd9;
+  --color-secondary: #65aeee;
+  --color-lighter: #acd1f2;
+  --color-accent: #aa463c;
+  --color-footer: rgba(208, 196, 172, 0.304);
+}
+
+@keyframes openNav {
+  50% {
+    border-radius: 0px 0px 70% 30% / 0px 0px 80% 40%;
+  }
+  100% {
+    border-radius: 0px;
+  }
+}
+
+section,
+header {
+  position: relative;
+}
+
+.outlined-text {
+  -webkit-text-stroke: 8px var(--color-neutral);
+  /* for default the browser paint the fill first and later the stroke, it determines that the browser have to paint first the stroke and later the fill */
+  /* with this the filling is painted over the stroke making that it doesnt take space from the text */
+  paint-order: stroke fill;
+}
