@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwind-animations";
 
 @theme {
   --font-heading: var(--font-heading);
