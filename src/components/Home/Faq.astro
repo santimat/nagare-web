@@ -35,7 +35,7 @@ const ITEMS = [
 ] as const;
 ---
 
-<section id={"faqs"} class="text-text lazy-section mx-auto max-w-20/21 font-bold">
+<section id={"faqs"} class="text-text lazy-section mx-auto w-20/21 font-bold">
   <h2 class="text-accent mb-8 text-center text-4xl leading-none md:text-5xl">
     Preguntas <span class="block md:inline">Frecuentes</span>
   </h2>
@@ -63,7 +63,7 @@ const ITEMS = [
       const faqDescriptionHeight = isOpen ? null : `${$targetedFaq.scrollHeight}px`;
       $faqDescription.style.maxHeight = faqDescriptionHeight;
     };
-    $faqList.addEventListener("click", handleClick);
+    $faqList?.addEventListener("click", handleClick);
 
     document.addEventListener(
       "astro:before-swap",

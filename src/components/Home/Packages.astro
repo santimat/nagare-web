@@ -87,7 +87,7 @@ const PACKAGES = [
 ] as const;
 ---
 
-<section id="packages" class="lazy-section mx-auto flex max-w-20/21 flex-col gap-20 xl:max-w-300">
+<section id="packages" class="lazy-section mx-auto flex w-20/21 flex-col gap-20 xl:max-w-300">
   <h2 class="text-main text-center text-4xl font-bold md:text-5xl">
     Que tu <span class="block md:inline">marca fluya!</span>
   </h2>
@@ -122,12 +122,12 @@ const PACKAGES = [
     };
 
     // Event delegation for package details toggle
-    $packages.addEventListener("click", handlePackageClick);
+    $packages?.addEventListener("click", handlePackageClick);
 
     document.addEventListener(
       "astro:before-swap",
       () => {
-        $packages.removeEventListener("click", handlePackageClick);
+        $packages?.removeEventListener("click", handlePackageClick);
       },
       { once: true },
     );
