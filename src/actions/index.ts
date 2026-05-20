@@ -9,14 +9,14 @@ export const server = {
     accept: "json",
     input: z.object({
       email: z.string().email(),
-      message: z.string().min(1),
+      query: z.string().min(1),
     }),
-    handler: async ({ email, message }) => {
-      console.log(`Received contact form submission from ${email}: ${message}`);
+    handler: async ({ email, query }) => {
+      console.log(`Received contact form submission from ${email}: ${query}`);
 
       return {
         success: true,
-        message: "Thank you for contacting us! We will get back to you shortly.",
+        query: "Thank you for contacting us! We will get back to you shortly.",
       };
     },
   }),

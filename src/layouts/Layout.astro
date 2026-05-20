@@ -37,6 +37,9 @@ const titleToShow = title ? `- ${title}` : "";
 </html>
 
 <style>
+  :root {
+    overscroll-behavior: none;
+  }
   /* prevent that body can be scrolleable with the navbar deployed */
   body:has(#menu:checked) {
     overflow: hidden;

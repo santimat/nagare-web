@@ -10,7 +10,6 @@ export default defineConfig({
   site: "https://nagarestudio.site",
   adapter: vercel(),
   output: "server",
-
   fonts: [
     {
       provider: fontProviders.local(),
@@ -54,6 +53,5 @@ export default defineConfig({
       },
     },
   },
-
   integrations: [react()],
 });
