@@ -6,7 +6,7 @@ import HouseIcon from "@icons/House.svg";
 import InstagramIcon from "@icons/Instagram.svg";
 import PackagesIcon from "@icons/Packages.svg";
 import ServicesIcon from "@icons/Services.svg";
-
+import BackdropEffect from "@components/BackdropEffect.astro";
 const date = new Date();
 const currentYear = date.getFullYear();
 
@@ -28,7 +28,7 @@ const LINKS = [
   <div class="mb-8 lg:flex lg:justify-evenly lg:gap-8">
     <FooterIcon width="350" height="110" class="mx-auto block md:flex-1" />
     <nav class="flex-1">
-      <ul class="my-4 grid justify-center gap-4 md:grid-cols-3">
+      <ul class="relative my-4 grid justify-center gap-4 md:grid-cols-3">
         {
           LINKS.map(({ Icon, text, href }) => (
             <li class="md:justify-self-center" key={href}>
@@ -49,4 +49,5 @@ const LINKS = [
     </nav>
   </div>
   <p class="text-text py-4">Nagare studio {currentYear}. &copy; Todos los derechos reservados</p>
+  <BackdropEffect parent="footer" />
 </footer>
