@@ -2,6 +2,12 @@
 import HeaderIcon from "@icons/Header.svg";
 import BurgerIcon from "@icons/Burguer.svg";
 
+const path = Astro.url.pathname;
+const isHome = path === "/" || path === "/index.html";
+
+const href = isHome ? "/contact" : "/";
+const text = isHome ? "Contacto" : "Inicio";
+
 const NAV_ITEMS = [
   {
     href: "/#packages",
@@ -12,8 +18,8 @@ const NAV_ITEMS = [
     text: "Sobre nosotros",
   },
   {
-    href: "/contact",
-    text: "Contacto",
+    href,
+    text,
   },
 ] as const;
 ---

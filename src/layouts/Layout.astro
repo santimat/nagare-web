@@ -1,7 +1,10 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import Font from "astro/components/Font.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 import "@/global.css";
+
 interface LayoutProps {
   title: string;
 }
@@ -32,7 +35,9 @@ const titleToShow = title ? `- ${title}` : "";
     <Font cssVariable="--font-heading" preload />
   </head>
   <body class="bg-neutral font-text animate-blurred-fade-in">
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>
 
