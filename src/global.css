@@ -31,8 +31,12 @@
   }
 }
 :root {
+  --cursor-pointer: url("@assets/cursor/pointer.png"), auto;
   overscroll-behavior: none;
   cursor: url("@assets/cursor/default-arrow.png"), auto;
+}
+a:hover {
+  cursor: var(--cursor-pointer);
 }
 section,
 header {
