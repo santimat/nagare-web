@@ -27,13 +27,13 @@ const LINKS = [
 <footer class="bg-footer text-accent lazy-section pt-12 text-center font-bold">
   <div class="mb-8 lg:flex lg:justify-evenly lg:gap-8">
     <FooterIcon width="350" height="110" class="mx-auto block md:flex-1" />
-    <nav class="flex-1">
-      <ul class="relative my-4 grid justify-center gap-4 md:grid-cols-3">
+    <nav class="relative flex-1" id="footer-nav">
+      <ul class="my-4 grid justify-center gap-4 md:grid-cols-3">
         {
           LINKS.map(({ Icon, text, href }) => (
             <li class="md:justify-self-center" key={href}>
               <a
-                class="flex items-center gap-2 text-xl"
+                class="flex items-center gap-2 p-2 text-xl"
                 href={href}
                 target={href.startsWith("https") ? "_blank" : "_self"}
               >
@@ -46,8 +46,8 @@ const LINKS = [
           ))
         }
       </ul>
+      <BackdropEffect parent="#footer-nav" bgColor="bg-accent/40" />
     </nav>
   </div>
   <p class="text-text py-4">Nagare studio {currentYear}. &copy; Todos los derechos reservados</p>
-  <BackdropEffect parent="footer" />
 </footer>

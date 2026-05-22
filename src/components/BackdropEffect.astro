@@ -1,66 +1,64 @@
 ---
 interface Props {
   parent: string;
+  bgColor: string;
 }
 
-const { parent } = Astro.props;
+const { parent, bgColor } = Astro.props;
+const backdropId = parent.replace("#", "") + "-backdrop";
+const zIndex = parent === "#nav-header" ? "z-20" : "-z-10";
 ---
 
 <div
   data-parent={parent}
-  id="menu-backdropardo"
-  class={`
-      absolute bg-accent/40 backdrop-blur-xs rounded-xl
-      translate-x-(--left) translate-y-(--top)
-      inset-0
-      w-(--width) h-(--height)
-      transition-all duration-500
-      ease-in-out opacity-0
-      -z-10
-    `}
+  id={backdropId}
+  class={`menu-backdrop absolute inset-0  h-(--height) w-(--width) translate-x-(--left) translate-y-(--top) rounded-xl opacity-0 backdrop-blur-xs transition-all duration-500 ease-in-out ${bgColor} ${zIndex} pointer-events-none `}
 >
 </div>
 
 <script>
   const initialize = () => {
     if (window.matchMedia("(min-width: 768px)").matches) {
-      const $menuBackDrop = document.querySelector("#menu-backdropardo") as HTMLElement;
-      const parentSelector = $menuBackDrop.dataset.parent;
-      const $parent = document.querySelector(parentSelector) as HTMLElement;
-      console.log({ parentSelector, $parent });
-      const updateMenuBackDrop = ({ target: $hoveredElement }) => {
-        if ($hoveredElement instanceof HTMLLIElement) {
-          const { left, top, width, height } = $hoveredElement.getBoundingClientRect();
+      const $menuBackDrops = document.querySelectorAll<HTMLDivElement>(".menu-backdrop");
+      $menuBackDrops.forEach(($menuBackDrop) => {
+        const parentSelector = $menuBackDrop.dataset.parent;
+        const $parent = document.querySelector(parentSelector) as HTMLElement;
 
-          // Object assign to update multiple styles at once
+        const updateMenuBackDrop = ({ target: $hoveredElement }) => {
+          const $anchor = $hoveredElement.closest("a");
+          if ($anchor) {
+            const { left: leftNav, top: topNav } = $parent.getBoundingClientRect();
+            const { left, top, width, height } = $anchor.getBoundingClientRect();
+            // Object assign to update multiple styles at once
+            Object.assign($menuBackDrop.style, {
+              transform: `translate(${left - leftNav}px, ${top - topNav}px)`,
+              width: `${width}px`,
+              height: `${height}px`,
+              opacity: "1",
+              visibility: "visible",
+            });
+          }
+        };
+
+        const resetMenuBackDrop = () => {
           Object.assign($menuBackDrop.style, {
-            transform: `translate(${left}px, ${top}px)`,
-            width: `${width}px`,
-            height: `${height}px`,
-            opacity: "1",
-            visibility: "visible",
+            opacity: "0",
+            visibility: "hidden",
           });
-        }
-      };
+        };
 
-      const resetMenuBackDrop = () => {
-        Object.assign($menuBackDrop.style, {
-          opacity: "0",
-          visibility: "hidden",
-        });
-      };
+        $parent?.addEventListener("mouseover", updateMenuBackDrop);
+        $parent?.addEventListener("mouseleave", resetMenuBackDrop);
 
-      $parent?.addEventListener("mouseover", updateMenuBackDrop);
-      $parent?.addEventListener("mouseleave", resetMenuBackDrop);
-
-      document.addEventListener(
-        "astro:before-swap",
-        () => {
-          $parent?.removeEventListener("mouseenter", updateMenuBackDrop);
-          $parent?.removeEventListener("mouseleave", resetMenuBackDrop);
-        },
-        { once: true },
-      );
+        document.addEventListener(
+          "astro:before-swap",
+          () => {
+            $parent?.removeEventListener("mouseover", updateMenuBackDrop);
+            $parent?.removeEventListener("mouseleave", resetMenuBackDrop);
+          },
+          { once: true },
+        );
+      });
     }
   };
 

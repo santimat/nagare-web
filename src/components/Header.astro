@@ -1,7 +1,7 @@
 ---
 import HeaderIcon from "@icons/Header.svg";
 import BurgerIcon from "@icons/Burguer.svg";
-
+import BackdropEffect from "@components/BackdropEffect.astro";
 const path = Astro.url.pathname;
 const isHome = path === "/" || path === "/index.html";
 
@@ -43,7 +43,7 @@ const NAV_ITEMS = [
       class="group-has-checked:animate-openNav group-has-checked:bg-neutral absolute inset-0 z-10 grid min-h-screen -translate-y-full place-content-center ease-linear group-has-checked:translate-y-0 group-has-checked:duration-300 md:relative md:min-h-auto md:translate-0"
     >
       <ul
-        id="nav-list"
+        id="nav-header"
         class="font-text text-main relative flex flex-col gap-4 text-center text-2xl font-bold md:flex-row"
       >
         {
@@ -56,83 +56,7 @@ const NAV_ITEMS = [
           ))
         }
       </ul>
+      <BackdropEffect parent="#nav-header" bgColor="bg-secondary/40" />
     </nav>
   </div>
-  <div
-    id="menu-backdrop"
-    class={`
-      absolute bg-secondary/40 backdrop-blur-xs rounded-xl
-      translate-x-(--left) translate-y-(--top)
-      inset-0
-      w-(--width) h-(--height)
-      transition-all duration-500
-      ease-in-out opacity-0
-      -z-10
-    `}
-  >
-  </div>
 </header>
-
-<script>
-  const init = () => {
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      const $listItems = document.querySelectorAll("header li");
-      const $menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
-
-      const updateMenuBackDrop = (item) => {
-        const { left, top, width, height } = item.getBoundingClientRect();
-
-        // Object assign to update multiple styles at once
-        Object.assign($menuBackDrop.style, {
-          transform: `translate(${left}px, ${top}px)`,
-          width: `${width}px`,
-          height: `${height}px`,
-          opacity: "1",
-          visibility: "visible",
-        });
-      };
-
-      const resetMenuBackDrop = () => {
-        Object.assign($menuBackDrop.style, {
-          opacity: "0",
-          visibility: "hidden",
-        });
-      };
-
-      $listItems.forEach((item) => {
-        item.addEventListener("mouseenter", () => updateMenuBackDrop(item));
-
-        item.addEventListener("mouseleave", resetMenuBackDrop);
-      });
-      document.addEventListener(
-        "astro:after-swap",
-        () => {
-          $listItems.forEach((item) => {
-            item.removeEventListener("mouseenter", () => updateMenuBackDrop(item));
-            item.removeEventListener("mouseleave", resetMenuBackDrop);
-          });
-        },
-        { once: true },
-      );
-    }
-
-    const $nav = document.querySelector("nav");
-    const closeNav = (e) => {
-      const $menu = document.querySelector("#menu") as HTMLInputElement;
-      if (e.target.tagName === "A") {
-        $menu.checked = false;
-      }
-    };
-    $nav?.addEventListener("click", closeNav);
-
-    document.addEventListener(
-      "astro:before-swap",
-      () => {
-        $nav?.removeEventListener("click", closeNav);
-      },
-      { once: true },
-    );
-  };
-
-  document.addEventListener("astro:page-load", init);
-</script>
