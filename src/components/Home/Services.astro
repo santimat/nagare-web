@@ -1,0 +1,70 @@
+---
+import WomenCharacter from "@icons/WomenCharacter.svg";
+import ServiceCard from "@components/Home/ServiceCard.astro";
+
+const SERVICES: string[] = [
+  "Diseño web",
+  "APIs",
+  "Logos",
+  "E-commerce",
+  "SEO",
+  "Branding",
+  "Idendidad visual",
+  "UX/UI",
+  "Redes sociales",
+  "Paneles de administración",
+] as const;
+---
+
+<section
+  id="services"
+  class="lazy-section bg-footer relative mx-auto flex h-200 w-full items-center justify-between overflow-hidden text-center"
+>
+  <div class="absolute top-10 z-10 xl:left-40">
+    <h2 class="text-accent text-[clamp(2.3rem,3vw,3.2rem)] font-bold">Servicios</h2>
+    <p class="text-text mx-auto max-w-lg text-2xl font-semibold text-pretty">
+      Mezcla y combina nuestros servicios para que encajen con tus necesidades.
+    </p>
+    <ServiceCard />
+  </div>
+  <div id="services-container" class="absolute top-0 right-4 w-full xl:right-40">
+    <ul
+      class="text-accent flex flex-col gap-8 text-right text-5xl leading-24 font-black opacity-40 md:opacity-75 lg:pt-8 lg:text-8xl xl:text-9xl"
+    >
+      {SERVICES.map((service) => <li class="service-item text-nowrap">{service}</li>)}
+    </ul>
+  </div>
+  <div class="top-services-list"></div>
+  <div class="bottom-services-list"></div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-700px);
+    }
+  }
+  .bottom-services-list,
+  .top-services-list {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+  }
+  .bottom-services-list {
+    background-image: linear-gradient(#f9f0d500, #f9f0d531 28%, #f2e8d5 88%);
+    bottom: 0;
+  }
+  .top-services-list {
+    background-image: linear-gradient(#f2e8d5 12%, #f9f0d531 61%, #f9f0d500);
+    top: 0;
+  }
+  .service-item {
+    animation-name: fadeInUp;
+    animation-timing-function: linear;
+    animation-range: 10% 75%;
+    animation-timeline: scroll(root);
+  }
+</style>

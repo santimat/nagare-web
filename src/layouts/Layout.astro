@@ -1,11 +1,17 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import Font from "astro/components/Font.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import "@/global.css";
 
-const { title = "" } = Astro.props;
+interface LayoutProps {
+  title: string;
+}
+
+const { title = "" }: LayoutProps = Astro.props;
 
 const titleToShow = title ? `- ${title}` : "";
-
-import "@styles/global.css";
 ---
 
 <!doctype html>
@@ -13,34 +19,46 @@ import "@styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg" href="/favicon.svg" />
     <meta
       name="description"
       content="Nagare - Ofrecemos soluciones digitales para empresas y particulares"
     />
+    <meta
+      name="keywords"
+      content="nagare, desarrollo web, diseño gráfico, marketing digital, soluciones digitales"
+    />
+    <meta name="author" content="Nagare Creative Studio" />
     <title>Nagare {titleToShow}</title>
     <ClientRouter />
+    <Font cssVariable="--font-text" preload />
+    <Font cssVariable="--font-heading" preload />
   </head>
-  <body class="bg-neutral font-text">
+  <body class="bg-neutral font-text animate-blurred-fade-in">
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>
 
-<style is:global>
-  section,
-  header {
-    position: relative;
-  }
-
+<style>
   /* prevent that body can be scrolleable with the navbar deployed */
   body:has(#menu:checked) {
     overflow: hidden;
   }
-
-  .outlined-text {
-    -webkit-text-stroke: 8px var(--color-neutral);
-    /* for default the browser paint the fill first and later the stroke, it determines that the browser have to paint first the stroke and later the fill */
-    /* with this the filling is painted over the stroke making that it doesnt take space from the text */
-    paint-order: stroke fill;
-  }
 </style>
+
+<script>
+  import AOS from "aos";
+  import "aos/dist/aos.css";
+
+  const init = () => {
+    const config = {
+      duration: 800,
+    };
+
+    AOS.init(config);
+  };
+
+  document.addEventListener("astro:page-load", init);
+</script>

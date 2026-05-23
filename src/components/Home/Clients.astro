@@ -1,0 +1,51 @@
+---
+import ComputerIcon from "@icons/Computer.svg";
+import CompanyIcon from "@icons/Company.svg";
+import CreatorsIcon from "@icons/Creators.svg";
+import JapanWomenIcon from "@icons/Japanwomen.svg";
+import RamenIcon from "@icons/Ramen.svg";
+
+const TARGETS = [
+  {
+    icon: ComputerIcon,
+    heading: "Comercios",
+    description:
+      "Diseñamos tiendas online intuitivas y optimizadas par mejorar la experiencia del usuario y aumentar tus ventas. ",
+  },
+  {
+    icon: CompanyIcon,
+    heading: "Pymes",
+    description:
+      "Desarrollamos soluciones digitales escalables que fortalecen tu presencia online y comunican el valor de tu marca.",
+  },
+  {
+    icon: CreatorsIcon,
+    heading: "Creadores",
+    description:
+      "Construimos plataformas personalizadas que potencian tu contenido y reflejan tu identidad de forma auténtica.",
+  },
+] as const;
+---
+
+<section id="clients" class="bg-main text-neutral lazy-section p-6">
+  <JapanWomenIcon width={60} height={60} class="absolute -top-2 right-2 h-20 w-20" />
+  <RamenIcon width={60} height={60} class="absolute -bottom-10 left-2 h-20 w-20" />
+  <div class="md:mx-auto md:w-[90%]">
+    <h2 class="text-[clamp(2rem,5vw,3rem)] font-bold text-pretty">
+      Clientes diversos, ideas unicas
+    </h2>
+    <ul class="mb-8 md:mx-auto md:mt-8 md:flex md:items-center md:gap-4">
+      {
+        TARGETS.map(({ icon: Icon, heading, description }) => {
+          return (
+            <li class="mb-8 md:mb-0">
+              <Icon width={95} height={95} />
+              <h3 class="text-[clamp(1.6rem,5vw,2.5rem)] font-bold">{heading}</h3>
+              <p class="text-xl text-balance">{description}</p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>

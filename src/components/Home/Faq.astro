@@ -1,0 +1,78 @@
+---
+import FaqItem from "@components/Home/FaqItem.astro";
+
+const ITEMS = [
+  {
+    title: "¿Que formas de pago aceptan?",
+    description:
+      "Aceptamos transferencias bancarias (Argentina) y PayPal (Para pagos internacionales). También podemos charlar otras opciones según el caso.",
+  },
+  {
+    title: "¿Como es el proceso de trabajo?",
+    description:
+      "El proceso de trabajo es el siguiente: Primero charlamos sobre tu proyecto, tus necesidades y objetivos. Luego te enviamos una propuesta con un presupuesto y un plan de trabajo. Si estás de acuerdo, comenzamos a trabajar en tu proyecto y te mantenemos informado durante todo el proceso.",
+  },
+  {
+    title: "¿Puedo contratar solo la parte de diseño o solo la parte de desarrollo?",
+    description:
+      "Sí, ofrecemos servicios de diseño y desarrollo por separado. Puedes contratar solo la parte de diseño o solo la parte de desarrollo, según tus necesidades.",
+  },
+  {
+    title: "¿Los precios están en pesos argentinos o dólares?",
+    description:
+      "Los precios están en pesos argentinos, pero podemos aceptar pagos en pesos dolares al tipo de cambio del día.",
+  },
+  {
+    title: "¿Puedo pedir cambios después de contratar un paquete?",
+    description:
+      "Sí, puedes pedir cambios después de contratar un paquete. Sin embargo, ten en cuenta que algunos cambios pueden requerir un ajuste en el presupuesto y el tiempo de entrega.",
+  },
+  {
+    title: "¿Que pasa si necesito ayuda una vez que el proyecto está terminado?",
+    description:
+      "Ofrecemos soporte post-entrega para asegurarnos de que estés satisfecho con el resultado final. Si necesitas ayuda después de que el proyecto esté terminado, no dudes en contactarnos y estaremos encantados de ayudarte.",
+  },
+] as const;
+---
+
+<section id={"faqs"} class="text-text lazy-section mx-auto w-20/21 font-bold">
+  <h2 class="text-accent mb-8 text-center text-4xl leading-none md:text-5xl">
+    Preguntas <span class="block md:inline">Frecuentes</span>
+  </h2>
+
+  <ul>
+    {ITEMS.map(({ title, description }) => <FaqItem title={title} description={description} />)}
+  </ul>
+</section>
+
+<script>
+  const init = () => {
+    const $faqList = document.querySelector("#faqs ul");
+    const handleClick = ({ target }: { target: EventTarget | null }) => {
+      const $targetedFaq = target?.closest("li");
+
+      // prevent open a faq when click on another faqList's site
+      if (!$targetedFaq) return;
+
+      const $faqDescription = $targetedFaq.querySelector("div");
+      const isOpen = $faqDescription.style.maxHeight !== "";
+
+      const $btn = $targetedFaq.querySelector("button span");
+      $btn.classList.toggle("-rotate-45");
+
+      const faqDescriptionHeight = isOpen ? null : `${$targetedFaq.scrollHeight}px`;
+      $faqDescription.style.maxHeight = faqDescriptionHeight;
+    };
+    $faqList?.addEventListener("click", handleClick);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        $faqList?.removeEventListener("click", handleClick);
+      },
+      { once: true },
+    );
+  };
+
+  document.addEventListener("astro:page-load", init);
+</script>

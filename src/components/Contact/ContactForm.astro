@@ -1,0 +1,60 @@
+<form id="contact-form" class="mx-auto flex flex-col gap-8">
+  <div class="focus-within: flex flex-col">
+    <label for="email" class="ml-1 text-lg font-semibold">Email</label>
+    <input
+      type="email"
+      required
+      id="email"
+      name="email"
+      placeholder="tuemail@ejemplo.com"
+      autocomplete="email"
+      class="bg-lighter focus:outline-accent w-full rounded-xl p-2 text-white placeholder:text-white/50"
+    />
+  </div>
+  <div class="focus-within: flex flex-col">
+    <label for="query" class="ml-1 text-lg font-semibold">Consulta</label>
+    <textarea
+      name="query"
+      id="query"
+      placeholder="Dejanos tu consulta aqui..."
+      rows="10"
+      class="bg-lighter focus-within:outline-accent w-full resize-none overflow-y-auto rounded-xl p-2 text-white placeholder:text-white/50"
+    ></textarea>
+  </div>
+  <input
+    class="bg-accent ml-auto w-fit rounded-xl px-4 py-3 font-bold tracking-wide transition-transform hover:scale-105 hover:cursor-pointer active:scale-95"
+    type="submit"
+    value="Enviar consulta"
+  />
+</form>
+
+<script>
+  import { actions } from "astro:actions";
+  const init = () => {
+    const $form = document.getElementById("contact-form");
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData($form);
+      const email = formData.get("email");
+      const query = formData.get("query");
+
+      const { data, error } = await actions.sendContactInfo({ email, query });
+
+      if (error) return console.log("There is an error! 😪");
+      console.log(data);
+    };
+
+    $form?.addEventListener("submit", handleSubmit);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        $form?.removeEventListener("submit", handleSubmit);
+      },
+      { once: true },
+    );
+  };
+
+  document.addEventListener("astro:page-load", init);
+</script>
