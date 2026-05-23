@@ -11,16 +11,3 @@
 - Vercel deploy
 - Resend with endpoing /api/emails by astro server output and vercel adapter
 
-## Vercel configuration
-
-```JSON
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      // capture the path to be rewritten and pass it as a parameter to the destination
-      "destination": "/$1"
-    }
-  ]
-}
-```
