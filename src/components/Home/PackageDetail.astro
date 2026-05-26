@@ -17,7 +17,7 @@ const { title, description }: PackageDetailProps = Astro.props;
   <ol class="mt-2 ml-8 max-h-0 list-decimal transition-[max-height] duration-500">
     {
       description.map((d) => (
-        <li class="text-text md:text-xl" title={d}>
+        <li class="text-text text-lg md:text-xl" title={d}>
           <span class="text-pretty">{d}.</span>
         </li>
       ))
