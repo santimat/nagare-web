@@ -28,5 +28,6 @@
 ## TODO
 
 [x] Apply refactor for import aliases, all files should be able to import from `@/` instead of relative paths
+[ ] Check why dependencies optimizing is not working in pnpm dev
 [ ] Test if toast works and watch styles
 [ ] Check ip rate limit implementation to prevent abuse of the contact form
