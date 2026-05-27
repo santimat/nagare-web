@@ -1,9 +1,30 @@
-:root {
-  scroll-behavior: smooth;
-}
-
 @import "tailwindcss";
 @import "tailwind-animations";
+
+@font-face {
+  font-family: "SourceSerif4";
+  src: url("/fonts/SourceSerif4.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "EtherealDemo";
+  src: url("/fonts/EtherealDemo-Black.woff2") format("woff2");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  scroll-behavior: smooth;
+  --cursor-pointer: url("@/assets/cursor/pointer.png"), auto;
+  overscroll-behavior: none;
+  cursor: url("@/assets/cursor/default-arrow.png"), auto;
+
+  --font-heading: "EtherealDemo", sans-serif;
+  --font-text: "SourceSerif4", serif;
+}
 
 @theme {
   --font-heading: var(--font-heading);
@@ -22,19 +43,6 @@
   --cursor-pointer: url("@/assets/cursor/pointer.png"), auto;
 }
 
-@keyframes openNav {
-  50% {
-    border-radius: 0px 0px 70% 30% / 0px 0px 80% 40%;
-  }
-  100% {
-    border-radius: 0px;
-  }
-}
-:root {
-  --cursor-pointer: url("@/assets/cursor/pointer.png"), auto;
-  overscroll-behavior: none;
-  cursor: url("@/assets/cursor/default-arrow.png"), auto;
-}
 a:hover {
   cursor: var(--cursor-pointer);
 }
@@ -48,4 +56,13 @@ header {
   /* for default the browser paint the fill first and later the stroke, it determines that the browser have to paint first the stroke and later the fill */
   /* with this the filling is painted over the stroke making that it doesnt take space from the text */
   paint-order: stroke fill;
+}
+
+@keyframes openNav {
+  50% {
+    border-radius: 0px 0px 70% 30% / 0px 0px 80% 40%;
+  }
+  100% {
+    border-radius: 0px;
+  }
 }
