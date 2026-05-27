@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 const resend = new Resend(RESEND_API_KEY);
 
-export const sendEmail = async ({ email, query }) => {
+export const sendEmail = async ({ email, query }: { email: string; query: string }) => {
   const { error } = await resend.batch.send([
     {
       from: "Nagare@nagarestudio.site",
