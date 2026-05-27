@@ -37,18 +37,17 @@
       event.preventDefault();
 
       const formData = new FormData($form);
-      const email = formData.get("email");
-      const query = formData.get("query");
-
-      const { error } = await actions.sendContactInfo({ email, query });
+      const { error } = await actions.sendContactInfo(formData);
 
       if (error) {
-        let message =
-          "Hubo un error al enviar su consulta. Por favor, inténtelo de nuevo más tarde.";
+        let message;
+        if (error.code === "TOO_MANY_REQUESTS") {
+          message =
+            "Has excedido el número máximo de solicitudes. Por favor, inténtelo de nuevo más tarde.";
+        }
 
         if (isInputError(error)) {
-          if (error.fields.email) message = "Por favor, ingrese un email válido.";
-          if (error.fields.query) message = "Por favor, ingrese una consulta válida.";
+          message = Object.values(error.fields).join(" y ");
         }
 
         const errorEvent = new CustomEvent("contact-error", {

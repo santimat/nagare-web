@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export function Toast({ children }) {
   const [toastMessage, setToastMessage] = useState<String | null>(null);
   const [toastType, setToastType] = useState<"error" | "success" | null>(null);
-  const toastClasses = toastType === "error" ? "bg-accent/80" : "bg-darker/80";
+  const toastClasses = toastType === "error" ? "bg-accent" : "bg-darker";
 
   const handleToast = (event: CustomEvent) => {
     const {
@@ -33,7 +33,7 @@ export function Toast({ children }) {
   if (toastMessage)
     return (
       <span
-        className={`fixed top-4 left-1/2 -translate-x-1/2 rounded px-4 py-2 ${toastClasses} text-white`}
+        className={`animate-fade-in-down animate-duration-300 fixed top-4 left-1/2 z-50 -translate-x-1/2 rounded px-4 py-2 text-white ${toastClasses}`}
       >
         {toastMessage}
       </span>
