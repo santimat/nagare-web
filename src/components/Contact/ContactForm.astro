@@ -2,7 +2,7 @@
   <div class="focus-within: flex flex-col">
     <label for="email" class="ml-1 text-lg font-semibold">Email</label>
     <input
-      type="email"
+      type="text"
       required
       id="email"
       name="email"
@@ -29,6 +29,7 @@
 </form>
 
 <script>
+  import { isInputError } from "astro:actions";
   import { actions } from "astro:actions";
   const init = () => {
     const $form = document.getElementById("contact-form");
@@ -42,13 +43,21 @@
       const { error } = await actions.sendContactInfo({ email, query });
 
       if (error) {
+        let message =
+          "Hubo un error al enviar su consulta. Por favor, inténtelo de nuevo más tarde.";
+
+        if (isInputError(error)) {
+          if (error.fields.email) message = "Por favor, ingrese un email válido.";
+          if (error.fields.query) message = "Por favor, ingrese una consulta válida.";
+        }
+
         const errorEvent = new CustomEvent("contact-error", {
           detail: {
             type: "error",
-            message:
-              "Hubo un error al enviar su consulta. Por favor, inténtelo de nuevo más tarde.",
+            message,
           },
         });
+
         return window.dispatchEvent(errorEvent);
       }
 

@@ -36,7 +36,8 @@ export const server = {
       ]);
 
       if (error) {
-        return { errpr: error.message };
+        console.log(error);
+        return { error: error.message };
       }
 
       return {
