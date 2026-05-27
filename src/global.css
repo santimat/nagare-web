@@ -19,7 +19,7 @@
   --color-lighter: #acd1f2;
   --color-accent: #aa463c;
   --color-footer: rgba(208, 196, 172, 0.304);
-  --cursor-pointer: url("@assets/cursor/pointer.png"), auto;
+  --cursor-pointer: url("@/assets/cursor/pointer.png"), auto;
 }
 
 @keyframes openNav {
@@ -31,9 +31,9 @@
   }
 }
 :root {
-  --cursor-pointer: url("@assets/cursor/pointer.png"), auto;
+  --cursor-pointer: url("@/assets/cursor/pointer.png"), auto;
   overscroll-behavior: none;
-  cursor: url("@assets/cursor/default-arrow.png"), auto;
+  cursor: url("@/assets/cursor/default-arrow.png"), auto;
 }
 a:hover {
   cursor: var(--cursor-pointer);

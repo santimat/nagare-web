@@ -10,11 +10,7 @@
     "allowJs": true,
     "noCheck": true,
     "paths": {
-      "@": ["./src/*"],
-      "@icons": ["./src/icons/*"],
-      "@components": ["./src/components/*"],
-      "@assets": ["./src/assets/*"],
-      "@styles": ["./src/styles/*"],
+      "@/*": ["./src/*"],
     },
   },
 }

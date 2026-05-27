@@ -24,3 +24,8 @@
   ]
 }
 ```
+
+## TODO
+
+[x] Apply refactor for import aliases, all files should be able to import from `@/` instead of relative paths
+[ ] Test if toast works and watch styles

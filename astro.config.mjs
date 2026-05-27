@@ -10,6 +10,15 @@ export default defineConfig({
   site: "https://nagarestudio.site",
   adapter: vercel(),
   output: "server",
+  integrations: [react()],
+  vite: {
+    plugins: [talwindcss()],
+    resolve: {
+      alias: {
+        "@": path.resolve("/src"),
+      },
+    },
+  },
   fonts: [
     {
       provider: fontProviders.local(),
@@ -40,18 +49,4 @@ export default defineConfig({
       },
     },
   ],
-
-  vite: {
-    plugins: [talwindcss()],
-    resolve: {
-      alias: {
-        "@": path.resolve("./src"),
-        "@icons": path.resolve("./src/icons"),
-        "@components": path.resolve("./src/components"),
-        "@assets": path.resolve("./src/assets"),
-        "@styles": path.resolve("./src/styles"),
-      },
-    },
-  },
-  integrations: [react()],
 });

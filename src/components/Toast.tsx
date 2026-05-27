@@ -9,6 +9,7 @@ export function Toast({ children }) {
     const {
       detail: { type, message },
     } = event;
+
     if (!message) return;
     setToastMessage(message);
     setToastType(type);
@@ -19,7 +20,15 @@ export function Toast({ children }) {
     }, 3000);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    window.addEventListener("contact-error", handleToast);
+    window.addEventListener("contact-success", handleToast);
+
+    () => {
+      window.removeEventListener("contact-error", handleToast);
+      window.removeEventListener("contact-success", handleToast);
+    };
+  }, []);
 
   if (toastMessage)
     return (
