@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import CharacterImage from "@/icons/CharacterIcon.astro";
+import WomenCharacter from "@/icons/WomenCharacter.svg";
 import ContactForm from "@/components/Contact/ContactForm.astro";
 import { Toast } from "@/components/Toast.tsx";
 ---
@@ -10,5 +9,6 @@ import { Toast } from "@/components/Toast.tsx";
   <div class="text-neutral bg-main relative mx-auto w-11/12 rounded-xl p-4 shadow-xl lg:max-w-4xl">
     <h1 class="font-heading mb-4 text-center text-5xl font-semibold">Formulario de contacto</h1>
     <ContactForm />
+    <WomenCharacter class="absolute -bottom-10 -left-5 w-40 opacity-85 md:w-50" />
   </div>
 </main>
