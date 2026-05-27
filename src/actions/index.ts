@@ -36,7 +36,7 @@ export const server = {
       ]);
 
       if (error) {
-        return console.error(error);
+        return { errpr: error.message };
       }
 
       return {

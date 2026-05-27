@@ -39,10 +39,27 @@
       const email = formData.get("email");
       const query = formData.get("query");
 
-      const { data, error } = await actions.sendContactInfo({ email, query });
+      const { error } = await actions.sendContactInfo({ email, query });
 
-      if (error) return console.log("There is an error! 😪");
-      console.log(data);
+      if (error) {
+        const errorEvent = new CustomEvent("contact-error", {
+          detail: {
+            type: "error",
+            message:
+              "Hubo un error al enviar su consulta. Por favor, inténtelo de nuevo más tarde.",
+          },
+        });
+        return window.dispatchEvent(errorEvent);
+      }
+
+      const successEvent = new CustomEvent("contact-success", {
+        detail: {
+          type: "success",
+          message:
+            "Gracias por enviar su consulta! Nos pondremos en contacto con usted lo antes posible.",
+        },
+      });
+      window.dispatchEvent(successEvent);
     };
 
     $form?.addEventListener("submit", handleSubmit);
