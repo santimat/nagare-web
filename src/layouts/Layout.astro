@@ -1,6 +1,5 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import Font from "astro/components/Font.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import "@/global.css";
@@ -31,8 +30,14 @@ const titleToShow = title ? `- ${title}` : "";
     <meta name="author" content="Nagare Creative Studio" />
     <title>Nagare {titleToShow}</title>
     <ClientRouter />
-    <Font cssVariable="--font-text" preload />
-    <Font cssVariable="--font-heading" preload />
+    <link rel="preload" href="/fonts/SourceSerif4.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/EtherealDemo-Black.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
   </head>
   <body class="bg-neutral font-text animate-blurred-fade-in">
     <Header />
