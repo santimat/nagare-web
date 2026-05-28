@@ -52,18 +52,3 @@ const titleToShow = title ? `- ${title}` : "";
     overflow: hidden;
   }
 </style>
-
-<script>
-  import AOS from "aos";
-  import "aos/dist/aos.css";
-
-  const init = () => {
-    const config = {
-      duration: 800,
-    };
-
-    AOS.init(config);
-  };
-
-  document.addEventListener("astro:page-load", init);
-</script>
