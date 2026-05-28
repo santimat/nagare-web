@@ -32,30 +32,30 @@
   import { isInputError } from "astro:actions";
   import { actions } from "astro:actions";
 
-  const errorEventHandler = (error) => {
-    let message =
-      "Ocurrió un error al enviar su consulta. Por favor, inténtelo de nuevo más tarde.";
-
-    if (error.code === "TOO_MANY_REQUESTS") {
-      message =
-        "Has excedido el número máximo de solicitudes. Por favor, inténtelo de nuevo más tarde.";
-    }
-
-    if (isInputError(error)) {
-      message = Object.values(error.fields).join(" y ");
-    }
-
-    const errorEvent = new CustomEvent("contact-error", {
-      detail: {
-        type: "error",
-        message,
-      },
-    });
-
-    window.dispatchEvent(errorEvent);
-  };
-
   const init = () => {
+    const errorEventHandler = (error) => {
+      let message =
+        "Ocurrió un error al enviar su consulta. Por favor, inténtelo de nuevo más tarde.";
+
+      if (error.code === "TOO_MANY_REQUESTS") {
+        message =
+          "Has excedido el número máximo de solicitudes. Por favor, inténtelo de nuevo más tarde.";
+      }
+
+      if (isInputError(error)) {
+        message = Object.values(error.fields).join(" y ");
+      }
+
+      const errorEvent = new CustomEvent("contact-error", {
+        detail: {
+          type: "error",
+          message,
+        },
+      });
+
+      window.dispatchEvent(errorEvent);
+    };
+
     const $form = document.getElementById("contact-form");
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -75,6 +75,7 @@
         },
       });
       window.dispatchEvent(successEvent);
+      $form.reset();
     };
 
     $form?.addEventListener("submit", handleSubmit);

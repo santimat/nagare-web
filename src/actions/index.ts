@@ -7,10 +7,10 @@ export const server = {
   sendContactInfo: defineAction({
     accept: "form",
     input: z.object({
-      email: z.string().email("El email no es válido"),
+      email: z.string().email("el email no es válido"),
       query: z
-        .string({ error: "La consulta no puede estar vacía" })
-        .min(1, { error: "La consulta no puede estar vacía" }),
+        .string({ error: "la consulta no puede estar vacía" })
+        .min(1, { error: "la consulta no puede estar vacía" }),
     }),
     handler: async (formData, context) => {
       const identifier = context?.clientAddress || email;

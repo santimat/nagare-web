@@ -33,7 +33,7 @@ export function Toast({ children }) {
   if (toastMessage)
     return (
       <span
-        className={`animate-fade-in-down animate-duration-300 fixed top-4 left-1/2 z-50 -translate-x-1/2 rounded px-4 py-2 text-white ${toastClasses}`}
+        className={`animate-fade-in-down animate-duration-300 fixed top-4 left-1/2 z-50 -translate-x-1/2 rounded px-4 py-2 text-white first-letter:capitalize ${toastClasses}`}
       >
         {toastMessage}
       </span>
