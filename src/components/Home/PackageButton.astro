@@ -2,12 +2,14 @@
 interface PackageButtonProps {
   text: string;
   class: string;
+  isCustom: boolean;
 }
 
-const { text, class: buttonClass }: PackageButtonProps = Astro.props;
+const { text, class: buttonClass, isCustom }: PackageButtonProps = Astro.props;
 ---
 
 <a
+  href={isCustom ? "/contact" : "/#packages"}
   class:list={[
     "bg-accent text-neutral mt-8 block w-fit rounded-2xl px-5 py-3 text-2xl transition-transform duration-200 hover:scale-105 hover:cursor-pointer md:text-3xl",
     buttonClass,
