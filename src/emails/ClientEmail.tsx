@@ -1,6 +1,10 @@
 import { Html, Head, Body, Container, Section, Text, Tailwind, Img, Heading } from "react-email";
-import * as React from "react";
-export default function ClientEmail({ email, query }) {
+
+interface ClientEmailProps {
+  email: string;
+  query: string;
+}
+export default function ClientEmail({ email, query }: ClientEmailProps) {
   email = "santino";
   return (
     <Html>
