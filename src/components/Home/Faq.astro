@@ -48,20 +48,21 @@ const ITEMS = [
 <script>
   const init = () => {
     const $faqList = document.querySelector("#faqs ul");
-    const handleClick = ({ target }: { target: EventTarget | null }) => {
+    const handleClick = (event: Event) => {
+      const target = event.target as HTMLElement;
       const $targetedFaq = target?.closest("li");
 
       // prevent open a faq when click on another faqList's site
       if (!$targetedFaq) return;
 
-      const $faqDescription = $targetedFaq.querySelector("div");
-      const isOpen = $faqDescription.style.maxHeight !== "";
+      const $faqDescription = $targetedFaq.querySelector("div") as HTMLDivElement;
+      const isOpen = $faqDescription?.style.maxHeight !== "";
 
       const $btn = $targetedFaq.querySelector("button span");
-      $btn.classList.toggle("-rotate-45");
+      $btn?.classList.toggle("-rotate-45");
 
       const faqDescriptionHeight = isOpen ? null : `${$targetedFaq.scrollHeight}px`;
-      $faqDescription.style.maxHeight = faqDescriptionHeight;
+      $faqDescription.style.maxHeight = faqDescriptionHeight ?? "0px";
     };
     $faqList?.addEventListener("click", handleClick);
 
