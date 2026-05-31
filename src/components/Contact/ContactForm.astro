@@ -29,11 +29,12 @@
 </form>
 
 <script>
+  import type { ActionError } from "astro:actions";
   import { isInputError } from "astro:actions";
   import { actions } from "astro:actions";
 
   const init = () => {
-    const errorEventHandler = (error) => {
+    const errorEventHandler = (error: ActionError) => {
       let message =
         "Ocurrió un error al enviar su consulta. Por favor, inténtelo de nuevo más tarde.";
 
@@ -56,8 +57,9 @@
       window.dispatchEvent(errorEvent);
     };
 
-    const $form = document.getElementById("contact-form");
-    const handleSubmit = async (event) => {
+    const $form = document.getElementById("contact-form") as HTMLFormElement;
+
+    const handleSubmit = async (event: SubmitEvent) => {
       event.preventDefault();
 
       const formData = new FormData($form);
