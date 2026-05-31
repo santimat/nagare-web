@@ -21,10 +21,11 @@ const zIndex = parent === "#nav-header" ? "z-20" : "-z-10";
     if (window.matchMedia("(min-width: 768px)").matches) {
       const $menuBackDrops = document.querySelectorAll<HTMLDivElement>(".menu-backdrop");
       $menuBackDrops.forEach(($menuBackDrop) => {
-        const parentSelector = $menuBackDrop.dataset.parent;
+        const parentSelector = $menuBackDrop.dataset.parent as string;
         const $parent = document.querySelector(parentSelector) as HTMLElement;
 
-        const updateMenuBackDrop = ({ target: $hoveredElement }) => {
+        const updateMenuBackDrop = (event: MouseEvent) => {
+          const $hoveredElement = event.target as HTMLElement;
           const $anchor = $hoveredElement.closest("a");
           if ($anchor) {
             const { left: leftNav, top: topNav } = $parent.getBoundingClientRect();
