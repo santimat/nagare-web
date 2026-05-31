@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function Toast({ children }) {
+export function Toast() {
   const [toastMessage, setToastMessage] = useState<String | null>(null);
   const [toastType, setToastType] = useState<"error" | "success" | null>(null);
   const toastClasses = toastType === "error" ? "bg-accent" : "bg-darker";
